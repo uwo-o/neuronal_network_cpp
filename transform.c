@@ -1,15 +1,40 @@
+#include <math.h>
+
 #include "transform.h"
+#include "neurone.h"
 
-double * apply_function(double * parents, Matrix * matrix, double slant){
+/*
+sigmoide
 
-    double * vector;
+- double x: The value to apply the function
+
+- return evaluated value
+*/
+double sigmoide(double x){
+    return 1/(1+exp(-x));
+}
+
+/*
+apply_function
+
+- Neurone * vector: The array that has every neuron in the layer
+- Matrix * matrix: The pointer that has the matrix struct, inside is the matrix_pointer
+
+    This function gets an array with neurons and theri quantity, a matrix structure, and a slant
+    then applies the dot product between the matrix and the vector, next add the slant.
+
+- return double sigmoide(value): Applies the sigmoide value and return the result
+*/
+double apply_function(Neurone * vector, Matrix * matrix, double slant, int neurons_quantity){
+
+    double result = 0;
 
     for(int i=0; i<(*matrix).rows; i++){
         for(int j=0; j<(*matrix).cols; j++){
-            vector[i] += (*matrix).matrix_pointer[i][j]*parents[j];
+            result += (*matrix).matrix_pointer[i][j]*vector[j].value;
         }
-        vector[i]+=slant;
+        result+=slant;
     }
 
-    return vector;
+    return sigmoide(result);
 };
