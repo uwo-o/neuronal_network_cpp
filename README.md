@@ -4,5 +4,7 @@
 A personal project where I developt a basic neuronal network using C language.
 
 
-## Authors
-<img src="https://github.com/uwo-o.png" width="25" height="25"> [@uwo-o](https://www.github.com/uwo-o)
+## Contributors
+<a href="https://github.com/uwo-o/Neuronal-Network-C/graphs/contributors">
+<img src="https://contrib.rocks/image?repo=uwo-o/Neuronal-Network-C" />
+</a>
