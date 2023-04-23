@@ -1,9 +1,6 @@
 #ifndef NEURONE_H
 #define NEURONE_H
 
-#include "matrix.h"
-#include "transform.h"
-
 /*
 Neurone struct
 - int childrens_quantity: The children's array size 
@@ -12,8 +9,10 @@ Neurone struct
 - int layer_id: The layer deeps number
 */
 typedef struct Neurone {
+    int parents_quantity;
     int childrens_quantity;
-    Neurone * childrens;
+    struct Neurone * parents;
+    struct Neurone * childrens;
     double value;
     int layer_id;
 } Neurone;
