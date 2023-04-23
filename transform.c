@@ -1,7 +1,4 @@
-#include <math.h>
-
 #include "transform.h"
-#include "neurone.h"
 
 /*
 sigmoide
