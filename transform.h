@@ -1,7 +1,10 @@
 #ifndef TRANSFORM_H
 #define TRANSFORM_H
 
+#include <math.h>
+
 #include "matrix.h"
+#include "neurone.h"
 
 /*
 Transform struct
