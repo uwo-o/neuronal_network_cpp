@@ -1,3 +1,5 @@
 #include "menu.h"
 
-Matrix * laod_model(FILE * ptr);
+Matrix * laod_model(FILE * ptr){
+    
+}

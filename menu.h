@@ -5,8 +5,6 @@
 
 #include "matrix.h"
 
-Matrix * laod_model(FILE * ptr){
-
-}
+Matrix * laod_model(FILE * ptr);
 
 #endif
