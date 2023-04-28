@@ -5,9 +5,9 @@
 
 typedef struct Stack{
     Node * head;
-    void (* push)(Node);
-    void (* pop)();
-    int (* get_length)();
+    void (* push)(Stack, Node);
+    void (* pop)(Stack);
+    int (* get_length)(Stack);
 } Stack;
 
 typedef struct Node{
