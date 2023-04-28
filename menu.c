@@ -1,9 +1,5 @@
 #include "menu.h"
 
-Matrix * load_model(FILE * ptr){
-
-}
-
 int options_check(int argc, char * argv){
 
     for(int i=0; i<argc; i++){
