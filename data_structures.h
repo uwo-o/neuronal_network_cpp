@@ -1,6 +1,8 @@
 #ifndef DATA_STRUCTURES_H
 #define DATA_STRUCTURES_H
 
+#include <stdio.h>
+
 typedef struct Stack{
     Node * head;
     void (* push)(Node);
@@ -14,8 +16,8 @@ typedef struct Node{
     struct Node * ptr_next;
 } Node;
 
-void push(Node node);
-void pop();
-int get_length();
+void push(Stack * stack, Node * node);
+void pop(Stack * stack);
+int get_length(Node * head);
 
 #endif
