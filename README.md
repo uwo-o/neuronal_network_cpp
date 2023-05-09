@@ -1,8 +1,13 @@
 
 # Neuronal network in C
 
-A personal project where I developt a basic neuronal network using C language.
+A personal project where I developt a basic neuronal network using C++ language.
 
+#### To Do list
+
+- [ ] Migrate program from C to C++
+- [ ] Desing neurons connector algorithm
+- [ ] Porgram descend gradient algorithm
 
 ## Contributors
 <a href="https://github.com/uwo-o/Neuronal-Network-C/graphs/contributors">
