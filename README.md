@@ -7,7 +7,7 @@ A personal project where I developt a basic neuronal network using C++ language.
 
 - [ ] Migrate program from C to C++
 - [ ] Desing neurons connector algorithm
-- [ ] Porgram descend gradient algorithm
+- [ ] Porgram descent gradient algorithm
 
 ## Contributors
 <a href="https://github.com/uwo-o/Neuronal-Network-C/graphs/contributors">
