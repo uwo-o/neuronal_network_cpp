@@ -1,10 +1,11 @@
-#ifndef MENU_H
-#define MENU_H
+#ifndef MENU_HPP
+#define MENU_HPP
+/*
 
-#include <stdio.h>
+CONVERT TO C++
 
-#include "matrix.h"
-#include "network.h"
+#include "matrix.hpp"
+#include "network.hpp"
 
 int OPTIONS_QUANTITY = 2;
 
@@ -17,4 +18,5 @@ char * OPTIONS_DESCRIPTION[] = {
 
 Matrix * laod_model(FILE * ptr);
 
+*/
 #endif

@@ -1,4 +1,8 @@
-#include "menu.h"
+#include "menu.hpp"
+
+/*
+
+CONVERT TO C++
 
 int options_check(int argc, char * argv){
 
@@ -25,3 +29,4 @@ void options (int argc,char * argv){
         case '-l': load_model(argv[2]); break;
     }
 }
+*/

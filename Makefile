@@ -1,11 +1,11 @@
 nnc: main.o network.o transform.o
-	gcc -o nnc main.o network.o transform.o -lm
+	g++ -o nnc main.o network.o transform.o -lm
 
-main.o: main.c
-	gcc -c main.c
+main.o: main.cpp
+	g++ -c main.cpp
 
-transform.o: transform.c
-	gcc -c transform.c
+transform.o: transform.cpp
+	g++ -c transform.cpp
 
 clean:
 	rm *.o nnc

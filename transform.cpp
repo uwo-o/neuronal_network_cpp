@@ -1,4 +1,4 @@
-#include "transform.h"
+#include "transform.hpp"
 
 /*
 sigmoide
@@ -22,7 +22,7 @@ apply_function
 
 - return double sigmoide(value): Applies the sigmoide value and return the result
 */
-double apply_function(Neurone * vector, Matrix * matrix, double slant, int neurons_quantity){
+double apply_function(Neuron * vector, Matrix * matrix, double slant, int neurons_quantity){
 
     double result = 0;
 
