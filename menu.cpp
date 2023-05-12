@@ -30,3 +30,7 @@ void options (int argc,char * argv){
     }
 }
 */
+
+void options (int argc, char * argv){
+    return;
+}
