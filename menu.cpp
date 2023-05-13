@@ -1,36 +1,37 @@
 #include "menu.hpp"
 
-/*
+array<tuple<string, string>, 2> OPTIONS = {
+    make_tuple("-l", "[load] With this option you can load a model in memory, you must have to insert a model name inside a text file (.txt)"),
+    make_tuple("-h", "[help] With this option you will get a program description and help, you can insert an option to get a description")
+};
 
-CONVERT TO C++
+bool options_check(int argc, vector<string> args){
 
-int options_check(int argc, char * argv){
-
-    for(int i=0; i<argc; i++){
-
-    }
-}
-
-void options (int argc,char * argv){
-
-    int error = options_check(argc, argv);
-
-    if(error){
-        printf("[Syntax Error] Error in option '");
-        printf(argv[error]);
-        printf("doesn't exist. You can use the following options:\n");
-        for(int i=0; i<OPTIONS_QUANTITY; i++){
-            printf(" - ");
-            printf(OPTIONS[OPTIONS_QUANTITY]);
+    for(int i=0; i<OPTIONS.size(); i++){
+        if(args[1] == get<0>(OPTIONS[i])){
+            return true;
         }
     }
 
-    switch(argv[1]){
-        case '-l': load_model(argv[2]); break;
-    }
+    return false;
 }
-*/
 
-void options (int argc, char * argv){
+void options (int argc, vector<string> args){
+
+    if(!options_check(argc, args)){
+        cout << "[Syntax Error] Error in option '" << args[1] << "' doesn't exist. You can use the following options:" << endl;
+        for(int i=0; i<OPTIONS.size(); i++){
+            cout << get<0>(OPTIONS[i]) << " - " << get<1>(OPTIONS[i]) << endl;
+        }
+        return;
+    }
+
+    for(int i=0; i<OPTIONS.size(); i++){
+        if(args[1] == get<0>(OPTIONS[i])){
+            cout << get<1>(OPTIONS[i]) << endl;
+            return;
+        }
+    }
+
     return;
 }

@@ -1,22 +1,15 @@
 #ifndef MENU_HPP
 #define MENU_HPP
-/*
 
-CONVERT TO C++
+#include <array>
+#include <vector>
+#include <tuple>
+#include <string>
+#include <iostream>
 
-#include "matrix.hpp"
-#include "network.hpp"
+using namespace std;
 
-int OPTIONS_QUANTITY = 2;
+bool options_check(int argc, vector<string> args);
+void options (int argc, vector<string> args);
 
-char * OPTIONS[] = {'-l', '-h'};
-
-char * OPTIONS_DESCRIPTION[] = {
-    "[load] With this option you can load a model in memory, you must have to insert a model name inside a text file (.txt)",
-    "[help] With this option you will get a program description and help, you can insert an option to get a description"
-};
-
-Matrix * laod_model(FILE * ptr);
-
-*/
 #endif
