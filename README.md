@@ -5,7 +5,7 @@ A personal project where I developt a basic neuronal network using C++ language.
 
 #### To Do list
 
-- [ ] Migrate program from C to C++
+- [x] Migrate program from C to C++
 - [ ] Desing neurons connector algorithm
 - [ ] Porgram descent gradient algorithm
 
