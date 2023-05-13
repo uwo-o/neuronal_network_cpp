@@ -8,9 +8,9 @@ void neurone_connector(Neuron * input_neurons, Neuron * output_neurons, Neuron *
 
 Network * create_network(int input_size, int output_size, int hidden_layers, int hidden_layers_size){
 
-    std::vector<Neuron> * input_neurons = new std::vector<Neuron>(input_size);
-    std::vector<Neuron> * output_neurons = new std::vector<Neuron>(output_size);
-    std::vector<Neuron> * hidden_neurons = new std::vector<Neuron>(hidden_layers*hidden_layers_size);
+    vector<Neuron> * input_neurons = new std::vector<Neuron>(input_size);
+    vector<Neuron> * output_neurons = new std::vector<Neuron>(output_size);
+    vector<Neuron> * hidden_neurons = new std::vector<Neuron>(hidden_layers*hidden_layers_size);
 
     Network * network = new Network;
 }
