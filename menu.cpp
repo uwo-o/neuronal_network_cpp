@@ -5,7 +5,15 @@ array<tuple<string, string>, 2> OPTIONS = {
     make_tuple("-h", "[help] With this option you will get a program description and help, you can insert an option to get a description")
 };
 
-bool options_check(int argc, vector<string> args){
+/* options_check
+ 
+This function check if the option exists in the OPTIONS array.
+- int argc: The arguments quantity.
+- std::vector<string> args: The arguments vector.
+
+return bool: If the option exists or not.
+ */
+bool options_check(int argc, std::vector<string> args){
 
     for(int i=0; i<OPTIONS.size(); i++){
         if(args[1] == get<0>(OPTIONS[i])){

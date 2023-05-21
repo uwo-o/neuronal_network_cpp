@@ -13,7 +13,7 @@ class Matrix {
     public:
         int rows;
         int cols;
-        std::vector<std::vector<double>> matrix_pointer;
+        std::vector<std::vector<double> > matrix_pointer;
 };
 
 #endif
