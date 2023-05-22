@@ -4,7 +4,7 @@
 #include <vector>
 
 /*
-Neurone class
+Neuron class
 - int childrens_quantity: The children's array size 
 - Neurone * childrens: Pointer that has the Neuone array
 - std::vector<Neuron*> parents: Vector of parent neuron pointers
