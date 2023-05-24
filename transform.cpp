@@ -12,6 +12,17 @@ double sigmoide(double x){
 }
 
 /*
+ReLU
+ 
+- double x: The value to apply the function
+ 
+- return evaluated value
+*/
+double ReLU(double x){
+	return x > 0 ? x : 0;
+}
+
+/*
 apply_function
 
 - Neurone * vector: The array that has every neuron in the layer
