@@ -2,37 +2,25 @@
 
 using namespace std;
 
-void neurone_connector(Neuron * input_neurons, Neuron * output_neurons, Neuron * hidden_neurons, int input_size, int output_size, int hidden_layers, int hidden_layers_size){
+// Network constructor
+Network::Network(int input_size, int output_size, int hidden_layers, int hidden_layers_size){
+	this->input_size = input_size;
+	this->output_size = output_size;
+	this->hidden_layers = hidden_layers;
+	this->hidden_layers_size = hidden_layers_size;
 
-}
+	for(int i = 0; i < this->input_size; i++){
+		Neuron * neuron = new Neuron;
+		this->input_neurons.push_back(neuron);
+	}
 
-Network * create_network(int input_size, int output_size, int hidden_layers, int hidden_layers_size){
+	for(int i = 0; i < this->hidden_layers*this->hidden_layers_size; i++){
+		Neuron * neuron = new Neuron;
+		this->hidden_neurons.push_back(neuron);
+	}
 
-    vector<Neuron> * input_neurons = new std::vector<Neuron>(input_size);
-    vector<Neuron> * output_neurons = new std::vector<Neuron>(output_size);
-    vector<Neuron> * hidden_neurons = new std::vector<Neuron>(hidden_layers*hidden_layers_size);
-
-    Network * network = new Network;
-}
-
-Network * load_model(int argc, char * argv[]){
-
-    ifstream file("./models/celcius_to_farenheit/model.txt");
-
-    if(!file.is_open()){
-        cout << "Error opening file" << std::endl;
-        return NULL;
-    }
-
-
-    int input_size, output_size, hidden_layers, hidden_layers_size;
-
-    file >> input_size;
-    file >> output_size;
-    file >> hidden_layers;
-    file >> hidden_layers_size;
-
-    cout << input_size << " " << output_size << " " << hidden_layers << " " << hidden_layers_size << std::endl;
-
-    file.close();
+	for(int i = 0; i < this->output_size; i++){
+		Neuron * neuron = new Neuron;
+		this->output_neurons.push_back(neuron);
+	}
 }
