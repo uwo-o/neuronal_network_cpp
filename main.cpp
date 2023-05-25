@@ -5,7 +5,6 @@
 
 #include "matrix.hpp"
 #include "neuron.hpp"
-#include "transform.hpp"
 #include "menu.hpp"
 
 using namespace std;
