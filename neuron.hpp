@@ -15,8 +15,9 @@ class Neuron {
 		std::vector<Link *> children_neurons;
 		double bias;
 	public:
-		Neuron() : id(global_id++), value(0), bias(0) {};	
+		Neuron() : id(global_id++), value(0), bias(0), status(-1) {};	
 		void synapse();
+		int status;
 		double apply_activation_function(double x);
 		double get_bias(){return bias;};
 		double get_value(){return value;};
