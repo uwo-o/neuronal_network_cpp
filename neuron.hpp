@@ -26,15 +26,17 @@ class Neuron {
 };
 
 class Link {
-	public:
-		Link(Neuron * input, Neuron * output, double weight){
-			this->input = input;
-			this->output = output;
-			this->weight = weight;
-		};
+	private:
 		Neuron * input;
 		Neuron * output;
 		double weight;
+	public:
+		Link();
+		void set_input(Neuron * neuron){this->input = neuron;};
+		void set_output(Neuron * neuron){this->input = neuron;};
+		void set_weight(double weight){this->weight = weight;};
+		
+		double get_weight(){return this->weight;};
 };
 
 #endif
