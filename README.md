@@ -1,5 +1,5 @@
 
-# Neuronal network in C
+# Neuronal network in C++
 
 A personal project where I developt a basic neuronal network using C++ language.
 
