@@ -3,7 +3,6 @@
 #include <string>
 #include <vector>
 
-#include "matrix.hpp"
 #include "neuron.hpp"
 #include "menu.hpp"
 
