@@ -3,40 +3,32 @@
 
 #include <vector>
 
-typedef class Link Link;
-
 class Neuron {
 	private:
-		double value;
+		double value, bias;
 		static int global_id;
 		const int id;
-	protected:
-		std::vector<Link *> parents_neurons;
-		std::vector<Link *> children_neurons;
-		double bias;
-	public:
-		Neuron() : id(global_id++), value(0), bias(0), status(-1) {};	
-		void synapse();
 		int status;
+	protected:
+		std::vector<Neuron *> parents_neurons;
+		std::vector<Neuron *> children_neurons;
+	public:
+
+		// The constructor creates every neuron with random initial values, these values will be changed during the learning process
+		Neuron() : id(global_id++), value((double)rand()), bias((double)rand()), status(-1) {};	
+		
+		void synapse();
+
 		double apply_activation_function(double x);
+
 		double get_bias(){return bias;};
 		double get_value(){return value;};
+		int get_status(){return status;};
+		int get_id(){return id;};
+
 		void set_value(double value){this->value = value;};
 		void set_bias(double bias){this->bias = bias;};
-};
-
-class Link {
-	private:
-		Neuron * input;
-		Neuron * output;
-		double weight;
-	public:
-		Link();
-		void set_input(Neuron * neuron){this->input = neuron;};
-		void set_output(Neuron * neuron){this->input = neuron;};
-		void set_weight(double weight){this->weight = weight;};
-		
-		double get_weight(){return this->weight;};
+		void set_status(int status){this->status = status;};
 };
 
 #endif
