@@ -8,16 +8,15 @@
 class Neuron {
 	private:
 		double value;
-		static int global_id;
-		const int id;
+		int id;
 		int status;
 	protected:
+		static int global_id;
 		std::vector<Neuron *> parents_neurons;
 		std::vector<std::tuple<double, Neuron *>> children_neurons;
 	public:
 
-		// The constructor creates every neuron with random initial values, these values will be changed during the learning process
-		Neuron() : id(global_id++), value((double)rand()), status(-1) {};	
+		Neuron();
 
 		void synapse();
 
@@ -26,9 +25,13 @@ class Neuron {
 		double get_value(){return this->value;};
 		int get_status(){return this->status;};
 		int get_id(){return this->id;};
+		std::vector<Neuron *> get_parents_neurons(){return this->parents_neurons;};
+		std::vector<std::tuple<double, Neuron *>> get_children_neurons(){return this->children_neurons;};
 
 		void set_value(double value){this->value = value;};
 		void set_status(int status){this->status = status;};
+		void push_child(std::tuple<double, Neuron *> child){this->children_neurons.push_back(child);};
+		void push_parent(Neuron * parent){this->parents_neurons.push_back(parent);};
 };
 
 #endif
