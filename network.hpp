@@ -17,7 +17,7 @@ class Network {
 		int output_size;
 		int hidden_layers;
 		int hidden_layers_size;
-		static int total_hidden_neurons;
+		int total_hidden_neurons;
 		std::vector<Neuron *> * input_neurons;
 		std::vector<std::vector <Neuron *> *> * hidden_neurons; 
 		std::vector<Neuron *> * output_neurons;
