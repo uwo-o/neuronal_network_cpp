@@ -4,20 +4,23 @@
 #include <vector>
 
 #include "neuron.hpp"
+#include "network.hpp"
 #include "menu.hpp"
 
 using namespace std;
 
 int main(int argc, char * argv[]){
 
-    vector<string> args = vector<string>(argv, argv+argc);
+    Network * network = NULL;
 
-    if(args.size() == 1){
-        cout << "Error: You must insert an option" << endl;
-        return 0;
+    while(true){
+        std::cout << "NNC++ started\nModel loaded:\n"<< std::endl;
+        if(!Network){
+            std::cout << "No model loaded, please select one optionn"<< std::endl;
+            // GO TO NO MODEL OPTIONS IN MENU
+        }
+        // GO TO MODEL OPTIONS IN MENU
     }
-
-    options(argc, args);
     
     return 0;
 }
