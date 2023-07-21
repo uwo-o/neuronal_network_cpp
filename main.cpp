@@ -15,7 +15,7 @@ int main(int argc, char * argv[]){
 
     while(true){
         std::cout << "NNC++ started\nModel loaded:\n"<< std::endl;
-        if(!Network){
+        if(!network){
             std::cout << "No model loaded, please select one optionn"<< std::endl;
             // GO TO NO MODEL OPTIONS IN MENU
         }
