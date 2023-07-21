@@ -33,15 +33,29 @@ Network::Network(int input_size, int output_size, int hidden_layers, int hidden_
 		this->output_neurons->push_back(neuron);
 	}
 
-	std::stack<Neuron *> * connector_stack = new std::stack<Neuron *>();
-	this->connector(connector_stack, this->input_neurons->front(), 0);
+	this->connector(new std::stack<Neuron *>(), this->input_neurons->front(), 0);
 }
 
 Neuron * Network::get_unconnected_neuron(int layer){
-	layer--;
-	for(int i=0; i<this->hidden_layers_size; i++){
-		if(this->hidden_neurons->at(layer)->at(i)->get_status() == -1){
-			return this->hidden_neurons->at(layer)->at(i);
+	if(layer == 0){
+		for(int i=0; i<this->input_neurons->size(); i++){
+			if(this->input_neurons->at(i)->get_status() == -1){
+				return this->input_neurons->at(i);
+			}
+		}
+	}
+	else if(layer < this->hidden_layers){
+		for(int i=0; i<this->hidden_layers_size; i++){
+			if(this->hidden_neurons->at(layer-1)->at(i)->get_status() == -1){
+				return this->hidden_neurons->at(layer-1)->at(i);
+			}
+		}
+	}
+	else if(layer == this->hidden_layers){
+		for(int i=0; i<this->output_neurons->size(); i++){
+			if(this->output_neurons->at(i)->get_status() == -1){
+				return this->output_neurons->at(i);
+			}
 		}
 	}
 	return NULL;
@@ -76,6 +90,9 @@ void Network::connector(std::stack <Neuron *> * stack, Neuron * current, int lay
 		stack->pop();
 		if(!stack->empty()){
 			this->connector(stack, stack->top(), layer-1);
+		}
+		else{
+			delete stack;
 		}
 	}
 }
