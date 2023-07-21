@@ -7,8 +7,6 @@
 #include "network.hpp"
 #include "menu.hpp"
 
-using namespace std;
-
 int main(int argc, char * argv[]){
 
     Network * network = NULL;
