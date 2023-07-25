@@ -1,11 +1,8 @@
-nnc: main.o activation_functions.o neuron.o network.o  menu.o
+nnc: main.o neuron.o network.o  menu.o
 	g++ -o nnc main.o neuron.o network.o menu.o -lm
 
 main.o: main.cpp
 	g++ -c main.cpp
-
-activation_functions.o: activation_functions.cpp activation_functions.hpp
-	g++ -c activation_functions.cpp activation_functions.hpp
 
 menu.o: menu.cpp
 	g++ -c menu.cpp
