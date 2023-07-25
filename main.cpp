@@ -6,18 +6,14 @@
 #include "neuron.hpp"
 #include "network.hpp"
 #include "menu.hpp"
+#include "constants.hpp"
 
 int main(int argc, char * argv[]){
 
-    Network * network = NULL;
+    Menu * menu = new Menu();
 
     while(true){
-        std::cout << "NNC++ started\nModel loaded:\n"<< std::endl;
-        if(!network){
-            std::cout << "No model loaded, please select one optionn"<< std::endl;
-            // GO TO NO MODEL OPTIONS IN MENU
-        }
-        // GO TO MODEL OPTIONS IN MENU
+        menu->show();
     }
     
     return 0;
