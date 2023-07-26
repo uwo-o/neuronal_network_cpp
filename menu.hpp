@@ -12,12 +12,8 @@ class Menu{
         Network *network;
     public:
         Menu();
-        void print_menu();
-        void load_model();
         void print_status();
-        void show();
-        bool update_state(int);
-        int selection();
+        std::string input();
 };
 
 #endif
