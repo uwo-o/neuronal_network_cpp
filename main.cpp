@@ -5,7 +5,8 @@ int main(int argc, char * argv[]){
     Menu * menu = new Menu();
 
     while(true){
-        menu->show();
+        std::string input = menu->input();
+
     }
     
     return 0;
