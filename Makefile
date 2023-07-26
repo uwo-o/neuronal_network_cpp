@@ -1,3 +1,6 @@
+run: nnc
+	./nnc
+
 nnc: main.o neuron.o network.o  menu.o
 	g++ -o nnc main.o neuron.o network.o menu.o -lm
 
