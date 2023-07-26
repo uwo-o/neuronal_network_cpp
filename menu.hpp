@@ -2,8 +2,11 @@
 #define MENU_HPP
 
 #include <iostream>
+#include <regex>
 
 #include "network.hpp"
+
+const std::regex SYNTAX = std::regex("^(load|save|train|test|exit) (-[a-z]+)? ?.*$");
 
 class Menu{
     private:
