@@ -1,6 +1,5 @@
-*.txt
 *.o
 *.gch
 /.vscode
 /.ccls-cache
-nnc
+build/*
