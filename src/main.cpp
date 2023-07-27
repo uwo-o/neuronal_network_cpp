@@ -6,7 +6,6 @@ int main(int argc, char * argv[]){
 
     while(true){
         std::string input = menu->input();
-
     }
     
     return 0;
