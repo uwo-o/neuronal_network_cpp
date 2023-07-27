@@ -6,8 +6,6 @@
 
 #include "network.hpp"
 
-const std::regex SYNTAX = std::regex("^(load|save|train|test|exit) (-[a-z]+)? ?.*$");
-
 class Menu{
     private:
         int model_loaded;
