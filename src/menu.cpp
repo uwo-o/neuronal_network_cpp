@@ -17,7 +17,7 @@ void Menu::print_status(){
 
 std::string Menu::input(){
     std::string input;
-    std::cout << "<nnc "<<VERSION<<"> "<<VERSION_NAME<<"@"<<(this->model_name ? this->model_name : "null")<<": ";
+    std::cout << "<nnc "<<VERSION<<"> "<<VERSION_NAME<<"@"<<(this->model_name ? this->model_name : "no-model")<<": ";
     getline(std::cin, input);
     return input;
 }
