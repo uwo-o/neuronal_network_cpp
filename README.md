@@ -7,7 +7,9 @@ A personal project where I developt a basic neuronal network using C++ language.
 
 - [x] Migrate program from C to C++
 - [x] Desing neurons connector algorithm
+    - [ ] Create tests for Network methods
     - [ ] Test neurons connector algorithm
+- [ ] Start to design the program base by tests
 - [ ] Porgram descent gradient algorithm
 
 ## Contributors
