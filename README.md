@@ -1,16 +1,16 @@
 
 # Neuronal network in C++
 
-A personal project where I developt a basic neuronal network using C++ language.
+A personal project where I developed a basic neuronal network using C++ language.
 
-#### To Do list
+#### To-Do list
 
 - [x] Migrate program from C to C++
 - [x] Desing neurons connector algorithm
     - [ ] Create tests for Network methods
     - [ ] Test neurons connector algorithm
-- [ ] Start to design the program base by tests
-- [ ] Porgram descent gradient algorithm
+- [ ] Start to design the program based on tests
+- [ ] Program descent gradient algorithm
 
 ## Contributors
 <a href="https://github.com/uwo-o/Neuronal-Network-C/graphs/contributors">
