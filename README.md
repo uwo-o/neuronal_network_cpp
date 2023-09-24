@@ -3,7 +3,13 @@
 
 A personal project where I developt a basic neuronal network using C++ language.
 
-#### To Do list
+
+## Index
+
+- [TO-DO List](#to-do-list)
+- [How to build](#build)
+
+#### TO-DO List
 
 - [ ] Create basic maths algorithms and classes
   - [ ] Testing
@@ -13,6 +19,10 @@ A personal project where I developt a basic neuronal network using C++ language.
   - [ ] Testing 
 - [ ] Paralellize with kokos Kokkos
   - [ ] Testing
+- [ ] Build tutorial
+
+#### Build
+
 
 ## Contributors
 <a href="https://github.com/uwo-o/Neuronal-Network-C/graphs/contributors">
