@@ -3,14 +3,24 @@
 
 A personal project where I developed a basic neuronal network using C++ language.
 
-#### To-Do list
+## Index
 
-- [x] Migrate program from C to C++
-- [x] Desing neurons connector algorithm
-    - [ ] Create tests for Network methods
-    - [ ] Test neurons connector algorithm
-- [ ] Start to design the program based on tests
-- [ ] Program descent gradient algorithm
+- [TO-DO List](#to-do-list)
+- [How to build](#build)
+
+#### TO-DO List
+
+- [ ] Create basic maths algorithms and classes
+  - [ ] Testing
+- [ ] Create basic neuronal network
+  - [ ] Testing
+- [ ] Program gradient descent algorithm
+  - [ ] Testing 
+- [ ] Paralellize with kokos Kokkos
+  - [ ] Testing
+- [ ] Build tutorial
+
+#### Build
 
 ## Contributors
 <a href="https://github.com/uwo-o/Neuronal-Network-C/graphs/contributors">

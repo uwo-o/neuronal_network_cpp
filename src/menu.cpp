@@ -1,5 +1,5 @@
-#include "menu.hpp"
-#include "constants.hpp"
+#include "includes/menu.hpp"
+#include "includes/constants.hpp"
 
 Menu::Menu(){
     this->model_loaded = 0;
@@ -7,7 +7,6 @@ Menu::Menu(){
     this->network = NULL;
     std::cout << "\033[2J\033[1;1H"; //clean screen
     std::cout << "Neuronal Network C++.\n" << VERSION_NAME  << ". version: " << VERSION << "\n"<< std::endl;
-    this->print_status();
 }
 
 void Menu::print_status(){
