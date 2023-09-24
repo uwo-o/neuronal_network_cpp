@@ -15,6 +15,14 @@ class Matrix {
         void * get_properties();
         void * get_data();
         void * get_data(int row, int col);
+        Matrix * copy();
+        
+        void dot(Matrix *matrix);
+        void sum(Matrix *matrix);
+        double determinant();
+        void transpose();
+        void inverse();
+        void scalar(double scalar);
 }
 
 #endif
