@@ -3,7 +3,7 @@ project(nnc)
 set(CMAKE_CXX_STANDARD 14)
 
 file(GLOB src_folder
-    "src/*.h"
+    "includes/*.h"
     "src/*.cpp"
 )
 

@@ -1,8 +1,7 @@
 
 # Neuronal network in C++
 
-A personal project where I developt a basic neuronal network using C++ language.
-
+A personal project where I developed a basic neuronal network using C++ language.
 
 ## Index
 
@@ -22,7 +21,6 @@ A personal project where I developt a basic neuronal network using C++ language.
 - [ ] Build tutorial
 
 #### Build
-
 
 ## Contributors
 <a href="https://github.com/uwo-o/Neuronal-Network-C/graphs/contributors">
