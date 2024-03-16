@@ -1,3 +1,5 @@
+use std::io::{self, Write};
+
 pub struct Menu {
     model_loaded: i8,
     model_name: Option<String>,
@@ -20,9 +22,13 @@ impl Menu {
 
     pub fn input(&self) -> String {
         let version: &str = env!("CARGO_PKG_VERSION");
+
         print!("<nnc {}> {}: ", version, self.model_name.as_ref().unwrap_or(&"no-model".to_string()));
+        std::io::stdout().flush().unwrap();
+
         let mut input = String::new();
         std::io::stdin().read_line(&mut input).unwrap();
-        input
+
+        return input;
     }
 }
