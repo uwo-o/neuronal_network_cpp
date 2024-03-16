@@ -19,7 +19,8 @@ impl Menu {
     }
 
     pub fn input(&self) -> String {
-        print!("<nnc {}> {}@{}: ", VERSION, VERSION_NAME, self.model_name.as_ref().unwrap_or(&"no-model".to_string()));
+        let version: &str = env!("CARGO_PKG_VERSION");
+        print!("<nnc {}> {}: ", version, self.model_name.as_ref().unwrap_or(&"no-model".to_string()));
         let mut input = String::new();
         std::io::stdin().read_line(&mut input).unwrap();
         input
