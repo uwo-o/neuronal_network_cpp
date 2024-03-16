@@ -9,5 +9,6 @@ fn main(){
     for arg in args.iter() {
         print!("{} \n", arg);
     }
+    menu.print_status();
     menu.input();
 }
