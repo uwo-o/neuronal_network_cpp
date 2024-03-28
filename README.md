@@ -6,21 +6,12 @@ A personal project where I developed a basic neuronal network using Rust languag
 ## Index
 
 - [TO-DO List](#to-do-list)
-- [How to build](#build)
 
 #### TO-DO List
 
-- [ ] Create basic maths algorithms and classes
-  - [ ] Testing
-- [ ] Create basic neuronal network
-  - [ ] Testing
-- [ ] Program gradient descent algorithm
-  - [ ] Testing 
-- [ ] Paralellize with kokos Kokkos
-  - [ ] Testing
-- [ ] Build tutorial
-
-#### Build
+- [ ] Make simple neuronal network CPU
+- [ ] Parallelize the network using CPU threads
+- [ ] Migrate the network to GPU
 
 ## Contributors
 <a href="https://github.com/uwo-o/Neuronal-Network-C/graphs/contributors">
