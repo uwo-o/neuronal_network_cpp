@@ -1,6 +1,6 @@
-*.o
-*.gch
 /.vscode
 /.ccls-cache
-build/*
-!build/.gitkeep
+
+# Added by cargo
+
+/target
