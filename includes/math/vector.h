@@ -15,18 +15,17 @@ class Vector {
 
         void * get_properties();
         void * get_data();
-        void * get_data(int row, int col);
         Vector * copy();
         
-        void dot(Vector *vector);
-        void cross(Vector *vector);
+        double dot(Vector *vector);
+        Vector * cross(Vector *vector);
 
         void print();
         
         Vector * operator+(Vector *vector);
         Vector * operator-(Vector *vector);
-        Vector * operator*(Vector *vector);
-        Vector * operator/(Vector *vector);
+        Vector * operator*(int scalar);
+        Vector * operator/(int scalar);
 }
 
 #endif
