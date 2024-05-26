@@ -10,13 +10,13 @@ A personal project where I developed a basic neuronal network using C++ language
 
 ### TO-DO List
 
-| ✅ : Ready | 🔵 : In progress | ⚪️ : To-do
+| 🟢 : Ready | 🔵 : In progress | ⚪️ : To-do
 
 ---
 
-🔵  Create basic maths algorithms and classes.
+🟢  Create basic maths algorithms and classes.
 
-⚪️ Create basic neuronal network.
+🔵 Create basic neuronal network.
 
 ⚪️ Program gradient descent algorithm.
 
