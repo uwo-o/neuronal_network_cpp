@@ -1,5 +1,7 @@
-#ifndef MATHS_H
-#define MATHS_H
+#ifndef MATRIX_H
+#define MATRIX_H
+
+#include <iostream>
 
 class Matrix {
     private:
@@ -23,6 +25,13 @@ class Matrix {
         void transpose();
         void inverse();
         void scalar(double scalar);
+
+        void print();
+        
+        Matrix * operator+(Matrix *matrix);
+        Matrix * operator-(Matrix *matrix);
+        Matrix * operator*(Matrix *matrix);
+        Matrix * operator/(Matrix *matrix);
 }
 
 #endif
