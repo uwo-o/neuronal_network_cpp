@@ -8,7 +8,7 @@ A personal project where I developed a basic neuronal network using C++ language
 - [TO-DO List](#to-do-list)
 - [How to build](#build)
 
-#### TO-DO List
+### TO-DO List
 
 | ✅ : Ready | 🔵 : In progress | ⚪️ : To-do
 
@@ -24,7 +24,16 @@ A personal project where I developed a basic neuronal network using C++ language
 
 ⚪️ Paralellize with CUDA.
 
-#### Build
+### Build
+
+Go to `build` folder, and run the following commands:
+
+```bash
+cmake ..
+make
+```
+
+Then at the same folder you will find the executable file `nnc`.
 
 ## Contributors
 <a href="https://github.com/uwo-o/Neuronal-Network-C/graphs/contributors">
