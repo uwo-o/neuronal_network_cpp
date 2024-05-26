@@ -13,8 +13,8 @@ class Vector {
         Vector(int size, double **data);
         ~Vector();
 
-        void * get_properties();
-        void * get_data();
+        int get_size();
+        double ** get_data();
         Vector * copy();
         
         double dot(Vector *vector);
@@ -26,6 +26,6 @@ class Vector {
         Vector * operator-(Vector *vector);
         Vector * operator*(int scalar);
         Vector * operator/(int scalar);
-}
+};
 
 #endif
