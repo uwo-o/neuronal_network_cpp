@@ -32,4 +32,9 @@ A personal project where I developed a basic neuronal network using C++ language
 </a>
 
 ---
-Based by [Neuronal Networks - 3Blue1Brown](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&ab_channel=3Blue1Brown)
+Based and inspired by [Neuronal Networks - 3Blue1Brown](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&ab_channel=3Blue1Brown)
+
+### References
+#### Backpropagation algorithm
+- [Backpropagation](https://en.wikipedia.org/wiki/Backpropagation)
+- [Understanding Backpropagation Algorithm](https://towardsdatascience.com/understanding-backpropagation-algorithm-7bb3aa2f95fd)
