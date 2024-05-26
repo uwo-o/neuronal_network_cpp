@@ -26,3 +26,5 @@ class Layer {
         void set_input(Vector *input);
         Vector * get_output();
 };
+
+#endif

@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+#include "math/vector.h"
+
 class Matrix {
     private:
         int rows;
@@ -14,17 +16,16 @@ class Matrix {
         Matrix(int rows, int cols, double **data);
         ~Matrix();
 
-        void * get_properties();
-        void * get_data();
-        void * get_data(int row, int col);
+        double get(int row, int col);
         Matrix * copy();
         
-        void dot(Matrix *matrix);
-        void sum(Matrix *matrix);
-        double determinant();
-        void transpose();
-        void inverse();
-        void scalar(double scalar);
+        Vector * dot(Vector *vector);
+        Matrix * dot(Matrix *matrix);
+        Matrix * sum(Matrix *matrix);
+        Matrix * determinant();
+        Matrix * transpose();
+        Matrix * inverse();
+        Matrix * scalar(double scalar);
 
         void print();
         

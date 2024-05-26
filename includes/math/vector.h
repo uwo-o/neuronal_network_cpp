@@ -6,15 +6,15 @@
 class Vector {
     private:
         int size;
-        double **data;
+        double *data;
 
     public:
         Vector(int size);
-        Vector(int size, double **data);
+        Vector(int size, double *data);
         ~Vector();
 
         int get_size();
-        double ** get_data();
+        double * get_data();
         Vector * copy();
         
         double dot(Vector *vector);
@@ -26,6 +26,7 @@ class Vector {
         Vector * operator-(Vector *vector);
         Vector * operator*(Vector *vector);
         Vector * operator/(Vector *vector);
+        double operator[](int index);
 };
 
 #endif
