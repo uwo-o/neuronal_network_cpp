@@ -117,30 +117,29 @@ Vector * Vector::operator-(Vector *vector) {
     return new Vector(this->size, data);
 }
 
-Vector * Vector::operator*(int scalar) {
+Vector * Vector::operator*(Vector *vector) {
 
     double **data = new double*[this->size];
 
     for (int i = 0; i < this->size; i++) {
         data[i] = new double[1];
-        data[i][0] = this->data[i][0] * scalar;
+        data[i][0] = this->data[i][0] * vector->data[i][0];
     }
 
     return new Vector(this->size, data);
 }
 
-Vector * Vector::operator/(int scalar) {
-
-    if (scalar ==0 ) {
-        std::cout << "Error: division by zero" << std::endl;
-        return NULL;
-    }
+Vector * Vector::operator/(Vector *vector) {
 
     double **data = new double*[this->size];
 
     for (int i = 0; i < this->size; i++) {
         data[i] = new double[1];
-        data[i][0] = this->data[i][0] / scalar;
+        if (vector->data[i][0] == 0) {
+            std::cout << "Error: division by zero" << std::endl;
+            return NULL;
+        }
+        data[i][0] = this->data[i][0] / vector->data[i][0];
     }
 
     return new Vector(this->size, data);

@@ -24,8 +24,8 @@ class Vector {
         
         Vector * operator+(Vector *vector);
         Vector * operator-(Vector *vector);
-        Vector * operator*(int scalar);
-        Vector * operator/(int scalar);
+        Vector * operator*(Vector *vector);
+        Vector * operator/(Vector *vector);
 };
 
 #endif
