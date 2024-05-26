@@ -11,8 +11,8 @@ class Network {
         int layers;
         int *neurons;
         double **data;
-        Matrix **weights;
-        Matrix **biases;
+        Matrix *weights;
+        Matrix *biases;
 
 
     public:
