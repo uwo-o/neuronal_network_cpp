@@ -1,10 +1,9 @@
-#include "includes/menu.hpp"
-#include "includes/constants.hpp"
+#include "menu.h"
+#include "constants.h"
 
 Menu::Menu(){
     this->model_loaded = 0;
     this->model_name = NULL;
-    this->network = NULL;
     std::cout << "\033[2J\033[1;1H"; //clean screen
     std::cout << "Neuronal Network C++.\n" << VERSION_NAME  << ". version: " << VERSION << "\n"<< std::endl;
 }
