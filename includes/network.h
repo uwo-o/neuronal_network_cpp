@@ -13,7 +13,7 @@ class Network {
         double **data;
         Matrix *weights;
         Matrix *biases;
-
+        char ** model_name;
 
     public:
         Network();
