@@ -23,19 +23,19 @@ Vector::~Vector() {
     delete[] this->data;
 }
 
-void * Vector::get_properties() {
-    return (void *) this->size;
+int Vector::get_size() {
+    return this->size;
 }
 
-void * Vector::get_data() {
-    return (void *) this->data;
+double ** Vector::get_data() {
+    return this->data;
 }
 
 double Vector::dot(Vector *vector) {
 
     if (this->size != vector->size) {
         std::cout << "Error: vectors must have the same size" << std::endl;
-        return;
+        return -1;
     }
 
     double sum = 0;
