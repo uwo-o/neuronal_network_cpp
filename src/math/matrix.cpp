@@ -54,88 +54,44 @@ Matrix * Matrix::copy() {
     return new Matrix(this->rows, this->cols, data);
 }
 
-Vector * Matrix::dot(Vector *vector) {
-        
-        if (this->cols != vector->get_size()) {
-            std::cout << "[ERROR] matrix columns must be equal to vector size" << std::endl;
-            return NULL;
+Vector * Matrix::mult(Vector * vector) {
+    if (this->cols != vector->get_size()) {
+        std::cout << "[ERROR] matrix and vector must have the same size" << std::endl;
+        return NULL;
+    }
+
+    double *data = new double[this->rows];
+
+    for (int i = 0; i < this->rows; i++) {
+        data[i] = 0;
+        for (int j = 0; j < this->cols; j++) {
+            data[i] += this->data[i][j] * vector->get(j);
         }
-    
-        double *data = new double[this->rows];
-    
-        for (int i = 0; i < this->rows; i++) {
-            data[i] = 0;
-            for (int j = 0; j < this->cols; j++) {
-                data[i] += this->data[i][j] * vector[j][0];
-            }
-        }
-    
-        return new Vector(this->rows, data);
+    }
+
+    return new Vector(this->rows, data);
 }
 
-Matrix * Matrix::dot(Matrix *matrix) {
-    
-    if (this->cols != matrix->rows) {
-        std::cout << "[ERROR] matrix columns must be equal to matrix rows" << std::endl;
-        return;
-    }
-
-    double **data = new double*[this->rows];
-
-    for (int i = 0; i < this->rows; i++) {
-        data[i] = new double[matrix->cols];
-    }
-
-    for (int i = 0; i < this->rows; i++) {
-        for (int j = 0; j < matrix->cols; j++) {
-            data[i][j] = 0;
-            for (int k = 0; k < this->cols; k++) {
-                data[i][j] += this->data[i][k] * matrix->data[k][j];
-            }
-        }
-    }
-
-    return new Matrix(this->rows, matrix->cols, data);
-}
-
-Matrix * Matrix::operator*(Matrix *matrix) {
-
-    double ** data = new double*[this->rows];
-
-    for (int i = 0; i < this->rows; i++) {
-        data[i] = new double[matrix->cols];
-    }
-
-    for (int i = 0; i < this->rows; i++) {
-        for (int j = 0; j < matrix->cols; j++) {
-            data[i][j] = 0;
-            for (int k = 0; k < this->cols; k++) {
-                data[i][j] += this->data[i][k] * matrix->data[k][j];
-            }
-        }
-    }
-
-    return new Matrix(this->rows, matrix->cols, data);
-}
-
-Matrix * Matrix::operator+(Matrix *matrix) {
-
-    if (this->rows != matrix->rows || this->cols != matrix->cols) {
-        std::cout << "[ERROR] matrix must have the same size" << std::endl;
+Matrix * Matrix::mult(Matrix * rigth_matrix){
+    if (this->cols != rigth_matrix->rows) {
+        std::cout << "[ERROR] matrixes must have the same size" << std::endl;
         return NULL;
     }
 
     double **data = new double*[this->rows];
 
     for (int i = 0; i < this->rows; i++) {
-        data[i] = new double[this->cols];
+        data[i] = new double[rigth_matrix->cols];
     }
 
     for (int i = 0; i < this->rows; i++) {
-        for (int j = 0; j < this->cols; j++) {
-            data[i][j] = this->data[i][j] + matrix->data[i][j];
+        for (int j = 0; j < rigth_matrix->cols; j++) {
+            data[i][j] = 0;
+            for (int k = 0; k < this->cols; k++) {
+                data[i][j] += this->data[i][k] * rigth_matrix->data[k][j];
+            }
         }
     }
 
-    return new Matrix(this->rows, this->cols, data);
+    return new Matrix(this->rows, rigth_matrix->cols, data);
 }

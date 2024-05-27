@@ -16,12 +16,12 @@ class Network {
         double learning_rate;
         char * name;
 
+        double (*activation)(double);
+
         Layer **network;
 
-        
-
     public:
-        Network(int layers, double learning_rate, int input_size, int neurons_per_hlayer, int output_size);
+        Network(int layers, double learning_rate, int input_size, int neurons_per_hlayer, int output_size, double (*activation)(double));
         ~Network();
 
         void print();

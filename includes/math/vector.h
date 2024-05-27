@@ -14,19 +14,16 @@ class Vector {
         ~Vector();
 
         int get_size();
+        double get(int index);
         double * get_data();
         Vector * copy();
         
+        void add(Vector *vector);
         double dot(Vector *vector);
-        Vector * cross(Vector *vector);
+        void cross(Vector *vector);
+        void apply(double (*function)(double));
 
         void print();
-        
-        Vector * operator+(Vector *vector);
-        Vector * operator-(Vector *vector);
-        Vector * operator*(Vector *vector);
-        Vector * operator/(Vector *vector);
-        double operator[](int index);
 };
 
 #endif

@@ -27,8 +27,24 @@ int Vector::get_size() {
     return this->size;
 }
 
+double Vector::get(int index) {
+    return this->data[index];
+}
+
 double * Vector::get_data() {
     return this->data;
+}
+
+void Vector::add(Vector *vector) {
+
+    if (this->size != vector->size) {
+        std::cout << "[ERROR] vectors must have the same size" << std::endl;
+        return;
+    }
+
+    for (int i = 0; i < this->size; i++) {
+        this->data[i] += vector->data[i];
+    }
 }
 
 double Vector::dot(Vector *vector) {
@@ -46,11 +62,11 @@ double Vector::dot(Vector *vector) {
     return sum;
 }
 
-Vector * Vector::cross(Vector *vector) {
+void Vector::cross(Vector *vector) {
 
     if (this->size != 3 || vector->size != 3) {
         std::cout << "[ERROR] vectors must have size 3" << std::endl;
-        return NULL;
+        return;
     }
 
     double *data = new double[3];
@@ -59,7 +75,8 @@ Vector * Vector::cross(Vector *vector) {
     data[1] = this->data[2] * vector->data[0] - this->data[0] * vector->data[2];
     data[2] = this->data[0] * vector->data[1] - this->data[1] * vector->data[0];
 
-    return new Vector(3, data);
+    delete[] this->data;
+    this->data = data;
 }
 
 void Vector::print() {
@@ -79,69 +96,8 @@ Vector * Vector::copy() {
     return new Vector(this->size, data);
 }
 
-Vector * Vector::operator+(Vector *vector) {
-
-    if (this->size != vector->size) {
-        std::cout << "Error: vectors must have the same size" << std::endl;
-        return NULL;
-    }
-
-    double *data = new double[this->size];
-
+void Vector::apply(double (*function)(double)) {
     for (int i = 0; i < this->size; i++) {
-        data[i] = this->data[i] + vector->data[i];
+        this->data[i] = function(this->data[i]);
     }
-
-    return new Vector(this->size, data);
-}
-
-Vector * Vector::operator-(Vector *vector) {
-
-    if (this->size != vector->size) {
-        std::cout << "Error: vectors must have the same size" << std::endl;
-        return NULL;
-    }
-
-    double *data = new double[this->size];
-    for (int i = 0; i < this->size; i++) {
-        data[i] = this->data[i] - vector->data[i];
-    }
-
-    return new Vector(this->size, data);
-}
-
-Vector * Vector::operator*(Vector *vector) {
-
-    double *data = new double[this->size];
-
-    for (int i = 0; i < this->size; i++) {
-        data[i] = this->data[i] * vector->data[i];
-    }
-
-    return new Vector(this->size, data);
-}
-
-Vector * Vector::operator/(Vector *vector) {
-
-    double *data = new double[this->size];
-
-    for (int i = 0; i < this->size; i++) {
-        if (vector->data[i] == 0) {
-            std::cout << "[ERROR] division by zero" << std::endl;
-            return NULL;
-        }
-        data[i] = this->data[i] / vector->data[i];
-    }
-
-    return new Vector(this->size, data);
-}
-
-double Vector::operator[](int index) {
-
-    if (index < 0 || index >= this->size) {
-        std::cout << "[ERROR] index out of bounds" << std::endl;
-        return NULL;
-    }
-
-    return this->data[index];
 }

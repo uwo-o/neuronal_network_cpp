@@ -12,11 +12,11 @@ class Layer {
         Vector *neurons;
         Vector *input;
         Matrix *weights;
-        Matrix *biases;
+        Vector *biases;
+        double (*activation)(double);
 
     public:
-        Layer(int id);
-        Layer(int id, int neurons, int input_size);
+        Layer(int id, int neurons, int input_size, double (*activation)(double));
         ~Layer();
 
         Layer * copy();
