@@ -2,10 +2,13 @@
 
 Layer::Layer(int id, int neurons, int input_size, double (*activation)(double)) {
     this->id = id;
+
     this->neurons = new Vector(neurons);
-    this->biases = new Vector(neurons);
-    this->weights = new Matrix(neurons, input_size);
-    this->activation = activation;
+    if (input_size!=-1) {
+        this->biases = new Vector(neurons);
+        this->weights = new Matrix(neurons, input_size);
+        this->activation = activation;
+    }
 }
 
 Layer::~Layer() {
@@ -32,3 +35,12 @@ Vector * Layer::get_output() {
     return this->neurons;
 }
 
+void Layer::print() {
+    std::cout << "Layer " << this->id << std::endl;
+    std::cout << "Neurons: " << std::endl;
+    this->neurons->print();
+    std::cout << "Weights: " << std::endl;
+    this->weights->print();
+    std::cout << "Biases: " << std::endl;
+    this->biases->print();
+}

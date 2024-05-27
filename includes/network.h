@@ -10,7 +10,7 @@ class Network {
 
         int input_size;
         int layers;
-        int neurons_per_hlayer;
+        int hlayers_size;
         int output_size;
 
         double learning_rate;
@@ -21,10 +21,13 @@ class Network {
         Layer **network;
 
     public:
-        Network(int layers, double learning_rate, int input_size, int neurons_per_hlayer, int output_size, double (*activation)(double));
+        Network(double learning_rate, int input_size, int hlayers_size, int output_size, double (*activation)(double));
         ~Network();
 
-        void print();
+        void describe();
+        void full_describe();
+
+        Layer * get_layer(int id);
 
         void set_input(Vector *input);
         Vector * get_output();

@@ -4,14 +4,17 @@
 #include <iostream>
 #include <regex>
 
+#include "network.h"
 class Menu{
     private:
-        int model_loaded;
-        char *model_name;
+        Network * model;
+        
     public:
         Menu();
         void print_status();
         std::string input();
+        void set_model(Network * model);
+        Network * get_model();
 };
 
 #endif
