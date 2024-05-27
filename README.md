@@ -1,7 +1,7 @@
 
 # Neuronal network in C++
 
-A personal project where I developed a basic neuronal network using C++ language.
+A personal project for developt a basic neuronal network using C++ language.
 
 ## Index
 
