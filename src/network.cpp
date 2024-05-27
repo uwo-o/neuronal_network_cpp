@@ -2,6 +2,7 @@
 
 Network::Network(double learning_rate, int input_size, int hlayers_size, int output_size, double (*activation)(double)) {
     this->network = new Layer*[hlayers_size + 2];
+    this->layers = hlayers_size + 2;
     this->learning_rate = learning_rate;
     this->input_size = input_size;
     this->hlayers_size = hlayers_size;
@@ -45,7 +46,7 @@ void Network::describe() {
 
 void Network::full_describe() {
     this->describe();
-    for (int i = 0; i < hlayers_size + 2; i++) {
+    for (int i = 0; i < layers; i++) {
         this->network[i]->print();
     }
 }

@@ -2,6 +2,9 @@
 
 Layer::Layer(int id, int neurons, int input_size, double (*activation)(double)) {
     this->id = id;
+    this->biases = nullptr;
+    this->weights = nullptr;
+    this->activation = nullptr;
 
     this->neurons = new Vector(neurons);
     if (input_size!=-1) {
@@ -39,8 +42,14 @@ void Layer::print() {
     std::cout << "Layer " << this->id << std::endl;
     std::cout << "Neurons: " << std::endl;
     this->neurons->print();
-    std::cout << "Weights: " << std::endl;
-    this->weights->print();
-    std::cout << "Biases: " << std::endl;
-    this->biases->print();
+    
+    if (this->weights != nullptr) {
+        std::cout << "Weights: " << std::endl;
+        this->weights->print();
+    }
+    
+    if (this->biases != nullptr) {
+        std::cout << "Biases: " << std::endl;
+        this->biases->print();
+    }
 }

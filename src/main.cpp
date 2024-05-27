@@ -15,7 +15,7 @@ int main(int argc, char * argv[]){
         if (input == "create")
         {
             std::cout << "Creating network" << std::endl;
-            Network * network = new Network(0.1, 1, 0, 1, [](double x) { return 1 / (1 + std::exp(-x)); });
+            Network * network = new Network(0.1, 3, 2, 2, [](double x) { return 1 / (1 + std::exp(-x)); });
             std::cout << "Network created" << std::endl;
             network->set_name("test");
             menu->set_model(network);
