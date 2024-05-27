@@ -101,3 +101,11 @@ void Vector::apply(double (*function)(double)) {
         this->data[i] = function(this->data[i]);
     }
 }
+
+void Vector::set(int index, double value) {
+    if (index < 0 || index >= this->size) {
+        std::cout << "[ERROR] index out of bounds" << std::endl;
+        return;
+    }
+    this->data[index] = value;
+}

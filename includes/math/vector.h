@@ -22,6 +22,7 @@ class Vector {
         double dot(Vector *vector);
         void cross(Vector *vector);
         void apply(double (*function)(double));
+        void set(int index, double value);
 
         void print();
 };
