@@ -20,9 +20,9 @@ A personal project where I developed a basic neuronal network using C++ language
 
 🔵 Implement backprogation algorithm.
 
-    - 🔵 Implement gradient descent algorithm.
-    - ⚪️ Use the backpropagation algorithm to train the network.
-    - ⚪️ Implement the feedforward algorithm.
+- 🔵 Implement gradient descent algorithm.
+- ⚪️ Use the backpropagation algorithm to train the network.
+- ⚪️ Implement the feedforward algorithm.
 
 ⚪️ Paralellize with kokos Kokkos.
 
