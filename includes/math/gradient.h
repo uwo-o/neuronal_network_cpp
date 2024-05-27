@@ -10,7 +10,7 @@ class Gradient {
         double learning_rate;
 
     public:
-        Gradient(double (*d_activation)(double), double learning_rate);
+        Gradient(double (*d_activation)(double));
         Vector ** calculate(Vector *current, Vector *prev, Vector *errors);
 };
 

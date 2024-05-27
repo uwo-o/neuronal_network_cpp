@@ -17,6 +17,7 @@ class Matrix {
         ~Matrix();
 
         double get(int row, int col);
+        Vector * get_row(int row);
         Matrix * copy();
         
         Matrix * add(Matrix *matrix);

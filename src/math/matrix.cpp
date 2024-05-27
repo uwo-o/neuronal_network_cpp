@@ -104,3 +104,7 @@ void Matrix::print() {
         std::cout << std::endl;
     }
 }
+
+Vector * Matrix::get_row(int row) {
+    return new Vector(this->cols, this->data[row]);
+}

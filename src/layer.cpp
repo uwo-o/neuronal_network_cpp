@@ -53,3 +53,15 @@ void Layer::print() {
         this->biases->print();
     }
 }
+
+Vector * Layer::get_neurons() {
+    return this->neurons;
+}
+
+Vector * Layer::get_biases() {
+    return this->biases;
+}
+
+Matrix * Layer::get_weights() {
+    return this->weights;
+}

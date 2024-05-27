@@ -25,6 +25,9 @@ class Layer {
 
         void set_input(Vector *input);
         Vector * get_output();
+        Vector * get_neurons();
+        Vector * get_biases();
+        Matrix * get_weights();
 };
 
 #endif

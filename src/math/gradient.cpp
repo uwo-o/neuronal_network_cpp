@@ -1,8 +1,7 @@
-#include "gradient.h"\
+#include "math/gradient.h"
 
-Gradient::Gradient(double (*d_activation)(double), double learning_rate){
+Gradient::Gradient(double (*d_activation)(double)){
     this->d_activation = d_activation;
-    this->learning_rate = learning_rate;
 }
 
 Vector ** Gradient::calculate(Vector *current, Vector *prev, Vector *errors){
@@ -11,7 +10,6 @@ Vector ** Gradient::calculate(Vector *current, Vector *prev, Vector *errors){
 
     double dc_dw = 0;
     double dc_db = 0;
-    double dc_da1 = 0;
 
     for(int i = 0; i < current->get_size(); i++){
         dc_dw = prev->get(i) * (d_activation(current->get(i))) * 2 * errors->get(i);
