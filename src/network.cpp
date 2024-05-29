@@ -1,24 +1,26 @@
 #include "network.h"
 
-Network::Network(double learning_rate, int input_size, int hlayers_size, int output_size, double (*activation)(double)) {
+Network::Network(int input_size, int hlayers_size, int output_size, double learning_rate) {
     this->network = new Layer*[hlayers_size + 2];
     this->layers = hlayers_size + 2;
     this->learning_rate = learning_rate;
     this->input_size = input_size;
     this->hlayers_size = hlayers_size;
     this->output_size = output_size;
-    this->activation = activation;
-    this->name = nullptr;
+
+    std::cout << "Creating network with " << hlayers_size << " hidden layers" << std::endl;
 
     for (int i = 0; i < hlayers_size + 2; i++) {
         if (i == 0) {
-            this->network[i] = new Layer(i, input_size, -1, activation);
+            this->network[i] = new Layer(i, input_size, -1);
         } else if (i == hlayers_size + 1) {
-            this->network[i] = new Layer(i, output_size, input_size, activation);
+            this->network[i] = new Layer(i, output_size, input_size);
         } else {
-            this->network[i] = new Layer(i, input_size, input_size, activation);
+            this->network[i] = new Layer(i, input_size, input_size);
         }
     }
+
+    std::cout << "Network created!" << std::endl;
 }
 
 Network::~Network() {
@@ -28,11 +30,11 @@ Network::~Network() {
     delete[] this->network;
 }
 
-void Network::set_name(char *name) {
+void Network::set_name(std::string name) {
     this->name = name;
 }
 
-char * Network::get_name() {
+std::string Network::get_name() {
     return this->name;
 }
 
@@ -44,7 +46,7 @@ void Network::describe() {
     std::cout << "Learning rate: " << this->learning_rate << std::endl;
 }
 
-void Network::full_describe() {
+void Network::fdescribe() {
     this->describe();
     for (int i = 0; i < layers; i++) {
         this->network[i]->print();
@@ -53,4 +55,20 @@ void Network::full_describe() {
 
 Layer * Network::get_layer(int id) {
     return this->network[id];
+}
+
+double Network::sigmoide(double x) {
+    return 1 / (1 + exp(-x));
+}
+
+double Network::relu(double x) {
+    return x > 0 ? x : 0;
+}
+
+double Network::d_sigmoide(double x) {
+    return sigmoide(x) * (1 - sigmoide(x));
+}
+
+double Network::d_relu(double x) {
+    return x > 0 ? 1 : 0;
 }

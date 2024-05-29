@@ -16,7 +16,7 @@ class Layer {
         double (*activation)(double);
 
     public:
-        Layer(int id, int neurons, int input_size, double (*activation)(double));
+        Layer(int id, int neurons, int input_size);
         ~Layer();
 
         Layer * copy();

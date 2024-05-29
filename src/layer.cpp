@@ -1,16 +1,15 @@
 #include "layer.h"
 
-Layer::Layer(int id, int neurons, int input_size, double (*activation)(double)) {
+Layer::Layer(int id, int neurons, int input_size) {
     this->id = id;
     this->biases = nullptr;
     this->weights = nullptr;
-    this->activation = nullptr;
 
     this->neurons = new Vector(neurons);
     if (input_size!=-1) {
         this->biases = new Vector(neurons);
         this->weights = new Matrix(neurons, input_size);
-        this->activation = activation;
+        //this->activation = activation;
     }
 }
 
@@ -33,7 +32,7 @@ Vector * Layer::get_output() {
     delete this->neurons;
     neurons = this->weights->mult(this->input);
     neurons->add(this->biases);
-    neurons->apply(this->activation);
+    //neurons->apply(this->activation);
 
     return this->neurons;
 }

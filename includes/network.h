@@ -2,6 +2,7 @@
 #define NETWORK_H
 
 #include <iostream>
+#include <math.h>
 
 #include "layer.h"
 
@@ -12,28 +13,33 @@ class Network {
         int layers;
         int hlayers_size;
         int output_size;
-
         double learning_rate;
-        char * name;
-
-        double (*activation)(double);
-
+        std::string name;
         Layer **network;
 
+        double sigmoide(double x);
+        double relu(double x);
+        double d_sigmoide(double x);
+        double d_relu(double x);
+
+        double (Network::*activation)(double);
+
     public:
-        Network(double learning_rate, int input_size, int hlayers_size, int output_size, double (*activation)(double));
+        Network(int input_size, int hlayers_size, int output_size, double learning_rate);
         ~Network();
 
         void describe();
-        void full_describe();
+        void fdescribe();
 
         Layer * get_layer(int id);
 
         void set_input(Vector *input);
         Vector * get_output();
 
-        void set_name(char *name);
-        char * get_name();
+        void set_name(std::string name);
+        std::string get_name();
+
+        void set_activation(double (*activation)(double));
 };
 
 #endif
