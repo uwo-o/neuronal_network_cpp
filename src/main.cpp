@@ -6,8 +6,8 @@
 int main(int argc, char * argv[]){
 
 
-    Network * network = new Network(1, 0, 1, 0.8);
-    network->set_name("XOR");
+    Network * network = new Network(2, 1, 1, 0.8);
+    network->set_name("test");
     network->describe();
     network->fdescribe();
 

@@ -38,7 +38,7 @@ Vector * Layer::get_output() {
 }
 
 void Layer::print() {
-    std::cout << "Layer " << this->id << std::endl;
+    std::cout << "===== Layer " << this->id << "=====\n"<< std::endl;
     std::cout << "Neurons: " << std::endl;
     this->neurons->print();
     
@@ -51,6 +51,7 @@ void Layer::print() {
         std::cout << "Biases: " << std::endl;
         this->biases->print();
     }
+    std::cout << "==================\n";
 }
 
 Vector * Layer::get_neurons() {

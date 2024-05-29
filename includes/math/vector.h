@@ -16,6 +16,9 @@ class Vector {
         int get_size();
         double get(int index);
         double * get_data();
+
+        void insert(int,double);
+
         Vector * copy();
         
         void add(Vector *vector);

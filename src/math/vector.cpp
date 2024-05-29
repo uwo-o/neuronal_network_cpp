@@ -35,6 +35,15 @@ double * Vector::get_data() {
     return this->data;
 }
 
+void Vector::insert(int index, double value){
+    if (index < 0 || index >= this->size) {
+        std::cout << "[ERROR] index out of bounds" << std::endl;
+        return;
+    }
+
+    this->data[index] = value;
+}
+
 void Vector::add(Vector *vector) {
 
     if (this->size != vector->size) {

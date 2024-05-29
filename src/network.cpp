@@ -39,6 +39,7 @@ std::string Network::get_name() {
 }
 
 void Network::describe() {
+    std::cout << "Network description\n" << std::endl,
     std::cout << "Network: " << this->name << std::endl;
     std::cout << "Input size: " << this->input_size << std::endl;
     std::cout << "Hidden layers: " << this->hlayers_size << std::endl;

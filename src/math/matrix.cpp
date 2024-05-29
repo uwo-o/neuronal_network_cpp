@@ -38,6 +38,14 @@ double Matrix::get(int row, int col) {
     return this->data[row][col];
 }
 
+int Matrix::get_cols(){
+    return this->cols;
+}
+
+int Matrix::get_rows(){
+    return this->rows;
+}
+
 Matrix * Matrix::copy() {
     double **data = new double*[this->rows];
 

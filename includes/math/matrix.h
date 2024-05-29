@@ -18,6 +18,8 @@ class Matrix {
 
         double get(int row, int col);
         Vector * get_row(int row);
+        int get_cols();
+        int get_rows();
         Matrix * copy();
         
         Matrix * add(Matrix *matrix);
