@@ -6,11 +6,9 @@ Layer::Layer(int id, int neurons, int input_size) {
     this->weights = nullptr;
 
     this->neurons = new Vector(neurons);
-    if (input_size!=-1) {
-        this->biases = new Vector(neurons);
-        this->weights = new Matrix(neurons, input_size);
-        //this->activation = activation;
-    }
+
+    this->biases = new Vector(neurons);
+    this->weights = new Matrix(neurons, input_size);
 }
 
 Layer::~Layer() {
@@ -24,24 +22,27 @@ void Layer::set_input(Vector *input) {
 }
 
 void Layer::print() {
-    std::cout << "===== Layer " << this->id << "=====\n"<< std::endl;
-    std::cout << "Neurons: " << std::endl;
-    this->neurons->print();
+    std::cout << "----- Layer " << this->id << "-----\n"<< std::endl;
     
     if (this->weights != nullptr) {
         std::cout << "Weights: " << std::endl;
         this->weights->print();
+        std::cout << "\n";
     }
     
     if (this->biases != nullptr) {
         std::cout << "Biases: " << std::endl;
         this->biases->print();
+        std::cout << "\n";
     }
-    std::cout << "==================\n";
-}
 
-Vector * Layer::get_neurons() {
-    return this->neurons;
+    if (this->neurons !=nullptr) {
+        std::cout << "Neurons: " << std::endl;
+        this->neurons->print();
+        std::cout << "\n";
+    }
+
+    std::cout << "==================\n";
 }
 
 Vector * Layer::get_biases() {
@@ -50,4 +51,8 @@ Vector * Layer::get_biases() {
 
 Matrix * Layer::get_weights() {
     return this->weights;
+}
+
+Vector * Layer::get_neurons() {
+    return this->neurons;
 }

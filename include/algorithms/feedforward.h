@@ -5,5 +5,5 @@
 
 double sigmoid(double x);
 
-void feedfordward( Vector * input, Vector * neurons, Layer * current);
+Vector * feedfordward( Vector * input, Vector * neurons, Layer * current);
 void run_feedforward(Network * network, Vector * expected, Vector * input);

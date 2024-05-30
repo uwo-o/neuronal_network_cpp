@@ -12,9 +12,11 @@ Network::Network(int input_size, int hlayers_size, int output_size, double learn
 
     for (int i = 0; i < hlayers_size + 2; i++) {
         if (i == 0) {
-            this->network[i] = new Layer(i, input_size, -1);
+            this->network[i] = new Layer(i, input_size, input_size);
         } else if (i == hlayers_size + 1) {
-            this->network[i] = new Layer(i, output_size, input_size);
+            this->network[i] = new Layer(i, output_size, 1);
+        } else if (i == hlayers_size) {
+            this->network[i] = new Layer(i, input_size, output_size);
         } else {
             this->network[i] = new Layer(i, input_size, input_size);
         }
