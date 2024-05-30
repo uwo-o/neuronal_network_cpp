@@ -24,10 +24,18 @@ class Layer {
         void print();
 
         void set_input(Vector *input);
+
+        int get_id();
+
         Vector * get_output();
         Vector * get_neurons();
         Vector * get_biases();
         Matrix * get_weights();
+
+        void set_weights(Matrix * weights);
+        void set_biases(Vector * biases);
+        void set_activation(double (*activation)(double));
+        void set_neurons(Vector * neurons);
 };
 
 #endif

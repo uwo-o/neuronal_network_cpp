@@ -7,7 +7,7 @@
 #include <iostream>
 
 TEST (FEEDFORDWARD, Test_1) {
-    Network * network = new Network(2, 1, 1, 0.8);
+    Network * network = new Network(1, 1, 1, 0.8);
     network->set_name("test");
 
     Vector * input = new Vector(2);

@@ -46,6 +46,10 @@ void Layer::print() {
     std::cout << "==================\n";
 }
 
+int Layer::get_id() {
+    return this->id;
+}
+
 Vector * Layer::get_biases() {
     return this->biases;
 }
@@ -56,4 +60,9 @@ Matrix * Layer::get_weights() {
 
 Vector * Layer::get_neurons() {
     return this->neurons;
+}
+
+void Layer::set_neurons(Vector * neurons) {
+    delete this->neurons;
+    this->neurons = neurons;
 }
