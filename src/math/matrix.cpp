@@ -116,3 +116,19 @@ void Matrix::print() {
 Vector * Matrix::get_row(int row) {
     return new Vector(this->cols, this->data[row]);
 }
+
+Matrix * Matrix::transpose() {
+    double **data = new double*[this->cols];
+
+    for (int i = 0; i < this->cols; i++) {
+        data[i] = new double[this->rows];
+    }
+
+    for (int i = 0; i < this->rows; i++) {
+        for (int j = 0; j < this->cols; j++) {
+            data[j][i] = this->data[i][j];
+        }
+    }
+    
+    return new Matrix(this->cols, this->rows, data);
+}

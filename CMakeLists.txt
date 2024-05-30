@@ -18,5 +18,5 @@ file(GLOB
 )
 
 add_executable(nnc ${src_folder})
-target_link_libraries(nnc gtest gtest_main pthread)
+target_link_libraries(nnc gtest gtest_main)
 add_test(NAME nnc COMMAND nnc)
