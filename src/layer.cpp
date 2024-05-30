@@ -63,6 +63,7 @@ Vector * Layer::get_neurons() {
 }
 
 void Layer::set_neurons(Vector * neurons) {
-    delete this->neurons;
+    if (neurons != nullptr)
+        delete this->neurons;
     this->neurons = neurons;
 }
