@@ -30,6 +30,11 @@ A personal project to implement a neuronal network in C++.
 
 ### Build
 
+Before to build the project, you need to install the following dependencies:
+- [CMake](https://cmake.org/)
+- [C++ Compiler](https://gcc.gnu.org/)
+- [Google Test](https://stackoverflow.com/questions/13513905/how-to-set-up-googletest-as-a-shared-library-on-linux) - Guide to install Google Test on Linux
+
 Go to `build` folder, and run the following commands:
 
 ```bash
