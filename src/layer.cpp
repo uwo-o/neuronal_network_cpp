@@ -6,9 +6,10 @@ Layer::Layer(int id, int neurons, int input_size) {
     this->weights = nullptr;
 
     this->neurons = new Vector(neurons);
-
-    this->biases = new Vector(neurons);
-    this->weights = new Matrix(neurons, input_size);
+    if (id != 0) {
+        this->biases = new Vector(neurons);
+        this->weights = new Matrix(neurons, input_size);
+    }
 }
 
 Layer::~Layer() {
