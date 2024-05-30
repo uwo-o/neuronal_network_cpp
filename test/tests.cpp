@@ -1,10 +1,10 @@
-#include "googletest/googletest/include/gtest/gtest.h"
+#include "gtest/gtest.h"
 #include "algorithms/feedforward.h"
 #include "layer.h"
 #include "math/vector.h"
 #include "math/matrix.h"
 
-CASE (MATH, Test#1) {
+TEST (MATH, Test_1) {
 
     double data[3] = {1, 2, 3};
     Vector *vector = new Vector(3, data);
@@ -15,5 +15,4 @@ CASE (MATH, Test#1) {
     EXPECT_EQ(vector->get(2), 3);
 
     delete vector;
-
 }
