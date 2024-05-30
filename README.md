@@ -21,6 +21,7 @@ A personal project to implement a neuronal network in C++.
 🔵 Implement backprogation algorithm.
 
 - 🔵 Implement gradient descent algorithm.
+- 🟢 Implement feedforward algorithm
 - ⚪️ Use the backpropagation algorithm to train the network.
 - ⚪️ Implement the feedforward algorithm.
 
