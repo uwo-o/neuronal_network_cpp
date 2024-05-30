@@ -73,3 +73,7 @@ double Network::d_sigmoide(double x) {
 double Network::d_relu(double x) {
     return x > 0 ? 1 : 0;
 }
+
+int Network::get_layers_size() {
+    return this->layers;
+}

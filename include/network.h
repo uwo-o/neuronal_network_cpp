@@ -34,10 +34,13 @@ class Network {
         Layer * get_layer(int id);
 
         void set_input(Vector *input);
+
         Vector * get_output();
 
         void set_name(std::string name);
         std::string get_name();
+
+        int get_layers_size();
 
         void set_activation(double (*activation)(double));
 };

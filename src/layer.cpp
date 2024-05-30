@@ -23,20 +23,6 @@ void Layer::set_input(Vector *input) {
     this->input = input;
 }
 
-Vector * Layer::get_output() {
-    if (this->input == NULL) {
-        std::cerr << "Layer " << this->id << " has no input set" << std::endl;
-        return NULL;
-    }
-
-    delete this->neurons;
-    neurons = this->weights->mult(this->input);
-    neurons->add(this->biases);
-    //neurons->apply(this->activation);
-
-    return this->neurons;
-}
-
 void Layer::print() {
     std::cout << "===== Layer " << this->id << "=====\n"<< std::endl;
     std::cout << "Neurons: " << std::endl;

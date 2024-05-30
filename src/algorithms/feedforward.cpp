@@ -7,14 +7,13 @@ double sigmoid(double x) {
     return 1 / (1 + exp(-x));
 }
 
-Vector * feedfordward(Vector * input, Vector * expected, Layer * current) {
+void feedfordward(Vector * input, Vector * neurons, Layer * current) {
 
     int input_size = input->get_size();
     Matrix * weights = current->get_weights();
     Vector * bias = current->get_biases();
 
     Vector * Z = new Vector(input_size);
-    Vector * A = new Vector(input_size);
 
     for(int i = 0; i<input_size; i++) {
         for( int j = 0; j<weights->get_rows(); j++){
@@ -26,8 +25,24 @@ Vector * feedfordward(Vector * input, Vector * expected, Layer * current) {
     }
 
     for(int i = 0; i<input_size; i++) {
-        A->insert(i, sigmoid(Z->get(i)));
+        neurons->insert(i, sigmoid(Z->get(i)));
     }
 
-    return A;
+    delete Z;
+}
+
+void run_feedforward(Network * network, Vector * expected, Vector * input) {
+    int size = network->get_layers_size();
+    for (int i = 1; i < size; i++) {
+
+        Vector *  prev_output;
+        if (i==1) {
+            prev_output = input;
+        } else {
+            prev_output = network->get_layer(i-1)->get_neurons();
+        }
+
+        Layer * current = network->get_layer(i);
+        feedfordward(prev_output, expected, current);
+    }
 }
