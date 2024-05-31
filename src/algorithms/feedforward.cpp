@@ -14,6 +14,7 @@ Vector * feedfordward(Vector * input, Layer * current, int size) {
 
     int rows = weights->get_rows();
     int cols = weights->get_cols();
+    int l_id = current->get_id();
 
     if (cols != input_size) {
         throw "Input vector size does not match the weights size";
@@ -33,16 +34,16 @@ Vector * feedfordward(Vector * input, Layer * current, int size) {
             double a = input->get(j);
             double w = weights->get(i,j);
             Z->insert(j, a*w + b);
+
+            // Apply the activation function to the output
+            Z->insert(j, sigmoid(Z->get(j)));
+            
         }
     }
 
+    current->set_neurons(Z);
 
-    Vector * out = new Vector(bias->get_size());
-    delete Z;
-
-    current->set_neurons(out);
-
-    return out;
+    return Z;
 }
 
 Vector * run_feedforward(Network * network, Vector * input) {
