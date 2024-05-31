@@ -1,11 +1,4 @@
-#include "math/vector.h"
-#include "network.h"
-#include "layer.h"
-#include "math/matrix.h"
-
-double sigmoid(double x) {
-    return 1 / (1 + exp(-x));
-}
+#include "algorithms/feedforward.h"
 
 Vector * feedfordward(Vector * input, Layer * current, int size) {
 
