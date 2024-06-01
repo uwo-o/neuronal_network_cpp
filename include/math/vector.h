@@ -28,6 +28,7 @@ class Vector {
         void accumulate(int index, double value);
         void expand(Vector *vector);
         double sum_elements();
+        void clear();
         void print();
 };
 

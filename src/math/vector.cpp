@@ -130,3 +130,9 @@ double Vector::sum_elements() {
     }
     return sum;
 }
+
+void Vector::clear() {
+    for (int i = 0; i < this->size; i++) {
+        this->data[i] = 0;
+    }
+}
