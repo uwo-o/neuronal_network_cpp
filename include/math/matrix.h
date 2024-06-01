@@ -31,6 +31,7 @@ class Matrix {
         Matrix * scalar(double scalar);
         Matrix * identity();
         Vector * to_vector();
+        void set(int i, int j, double data);
 
         void print();
 };

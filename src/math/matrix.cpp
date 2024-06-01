@@ -161,3 +161,6 @@ Vector * Matrix::to_vector() {
     return new Vector(this->rows * this->cols, (double *) this->data);
 }
 
+void Matrix::set(int i, int j, double data){
+    this->data[i][j] = data;
+}
