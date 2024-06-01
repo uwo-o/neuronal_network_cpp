@@ -5,6 +5,7 @@ Vector * feedfordward(Vector * input, Layer * current, int size) {
     int input_size = input->get_size();
     Matrix * weights = current->get_weights();
 
+
     int rows = weights->get_rows();
     int cols = weights->get_cols();
     int l_id = current->get_id();
@@ -23,12 +24,10 @@ Vector * feedfordward(Vector * input, Layer * current, int size) {
 
     for(int i = 0; i<cols; i++) {
         for( int j = 0; j<rows; j++){
+            double a = input->get(i);
             double b = bias->get(j);
-            double a = input->get(j);
-            double w = weights->get(i,j);
-    
+            double w = weights->get(j,i);
             Z->accumulate(j, a*w + b);
-            // Apply the activation function to the output
         }
     }
 
