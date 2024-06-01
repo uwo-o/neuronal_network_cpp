@@ -8,10 +8,6 @@ void backpropagation(Network * net, Vector *expected, double learning_rate) {
     output->subtraction(expected);
     double error = output->sum_elements();
 
-    if (0.05 <= error <= 0.05) {
-        return;
-    }
-
     Vector *prev_output = net->get_layer(net_size - 2)->get_neurons();
     Matrix *output_weights = output_layer->get_weights();
     Vector *bias = output_layer->get_biases();
@@ -22,36 +18,48 @@ void backpropagation(Network * net, Vector *expected, double learning_rate) {
 
     for(int i = 0; i<output_weights->get_cols(); i++) {
         for( int j = 0; j<output_weights->get_rows(); j++){
-
-            double b = bias->get(j);
-            double a = prev_output->get(i);
-            double w = output_weights->get(i,j);
+            double b = bias->get(i);
+            double a = prev_output->get(j);
+            double w = output_weights->get(j,i);
 
             Z->accumulate(j, a*w + b);
         }
     }
 
-    Vector *deltas = new Vector(Z->get_size());
+    Vector *deltas = new Vector(output->get_size());
+    
     for (int i = 0; i < Z->get_size(); i++) {
-        deltas->set(i, d_sigmoid(Z->get(i)) * d_sigmoid(Z->get(i)) * output->get(i));
+        for (int j = 0; j < output->get_size(); j++) {
+            deltas->accumulate(j, d_sigmoid(Z->get(i)) * d_sigmoid(Z->get(i)) * output->get(j));
+        }
     }
-
+    
     for(int i = 0; i<output_weights->get_cols(); i++) {
         for( int j = 0; j<output_weights->get_rows(); j++){
-            double w = output_weights->get(i,j);
+            double w = output_weights->get(j,i);
             double a = prev_output->get(j);
             double delta = deltas->get(i);
 
-            output_weights->set(i, j, w - learning_rate * a * delta);
+            output_weights->set(j, i, w - learning_rate * a * delta);
         }
     }
 
+    // Update original output weights
+    for(int i = 0; i<output_weights->get_cols(); i++) {
+        for( int j = 0; j<output_weights->get_rows(); j++){
+            output_layer->get_weights()->set(i, j, output_weights->get(j,i));
+        }
+    }
+    
+    bias->print();
     for (int i = 0; i < bias->get_size(); i++) {
         double b = bias->get(i);
         double delta = deltas->get(i);
 
         bias->set(i, b - learning_rate * delta);
     }
+
+    // works utilz here
 
     for (int i = net_size -2 ; i >0 ; i--) {
         Layer * layer = net->get_layer(i);
