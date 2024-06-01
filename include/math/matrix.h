@@ -34,6 +34,7 @@ class Matrix {
         void set(int i, int j, double data);
 
         void print();
+        void print_shape();
 };
 
 #endif

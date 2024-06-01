@@ -164,3 +164,7 @@ Vector * Matrix::to_vector() {
 void Matrix::set(int i, int j, double data){
     this->data[i][j] = data;
 }
+
+void Matrix::print_shape() {
+    std::cout << "Matrix shape: (" << this->rows << ", " << this->cols << ")" << std::endl;
+}
