@@ -51,7 +51,6 @@ void backpropagation(Network * net, Vector *expected, double learning_rate) {
         }
     }
     
-    bias->print();
     for (int i = 0; i < bias->get_size(); i++) {
         double b = bias->get(i);
         double delta = deltas->get(i);
@@ -59,29 +58,43 @@ void backpropagation(Network * net, Vector *expected, double learning_rate) {
         bias->set(i, b - learning_rate * delta);
     }
 
+    delete Z;
+
     // works utilz here
 
-    for (int i = net_size -2 ; i >0 ; i--) {
+    for (int i = net_size -2 ; i >1 ; i--) {
+
         Layer * layer = net->get_layer(i);
-        Vector * d_activation = new Vector(prev_output->get_size());
         prev_output = net->get_layer(i-1)->get_neurons();
         Matrix * weights = layer->get_weights();
+        bias = layer->get_biases();
+        Vector * d_activation = new Vector(bias->get_size());
+
+        Z = new Vector(bias->get_size());
 
         for (int i = 0; i < weights->get_cols(); i++) {
             for( int j = 0; j < weights->get_rows(); j++){
                 double b = bias->get(j);
-                double a = prev_output->get(j);
-                double w = output_weights->get(i,j);
+                double a = prev_output->get(i);
+                double w = weights->get(j,i);
 
                 Z->accumulate(j, a*w + b);
             }
         }
 
         for (int i = 0; i < Z->get_size(); i++) {
-            d_activation->set(i, d_sigmoid(Z->get(i)) * d_sigmoid(Z->get(i)) * output->get(i));
+            d_activation->set(i, d_sigmoid(Z->get(i)) * d_sigmoid(Z->get(i)));
         }
 
         Vector *n_deltas = new Vector(Z->get_size());
+
+        for(int i = 0; i< n_deltas->get_size(); i++) {
+            for( int j = 0; j < deltas->get_size(); j++){
+                double d = deltas->get(j);
+                double n_d = d_activation->get(i);
+                n_deltas->accumulate(i, d * n_d);
+            }
+        }
 
         for (int i = 0; i < weights->get_cols(); i++) {
             for( int j = 0; j < weights->get_rows(); j++){
@@ -92,14 +105,12 @@ void backpropagation(Network * net, Vector *expected, double learning_rate) {
             }
         }
 
-
         for(int i = 0; i<weights->get_cols(); i++) {
             for( int j = 0; j<weights->get_rows(); j++){
                 double w = weights->get(i,j);
-                double a = prev_output->get(j);
                 double delta = n_deltas->get(i);
 
-                weights->set(i, j, w - learning_rate * a * delta);
+                weights->set(i, j, w - learning_rate * w * delta);
             }
         }
 
@@ -110,12 +121,9 @@ void backpropagation(Network * net, Vector *expected, double learning_rate) {
             bias->set(i, b - learning_rate * delta);
         }
 
-        for(int i = 0; i<output_weights->get_cols(); i++) {
-            for( int j = 0; j<output_weights->get_rows(); j++){
-                weights->set(i, j, output_weights->get(i,j));
-            }
-        }
-
         prev_output = layer->get_neurons();
+        delete n_deltas;
+        delete d_activation;
+        delete Z;
     }
 }
