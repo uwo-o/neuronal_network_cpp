@@ -26,14 +26,15 @@ Vector * feedfordward(Vector * input, Layer * current, int size) {
             double b = bias->get(j);
             double a = input->get(j);
             double w = weights->get(i,j);
-
-            Z->set(j, a*w + b);
+    
+            Z->accumulate(j, a*w + b);
             // Apply the activation function to the output
-            Z->set(j, sigmoid(Z->get(j)));
-            
         }
     }
 
+    for (int i = 0; i < Z->get_size(); i++) {
+        Z->set(i, sigmoid(Z->get(i)));
+    }
     current->set_neurons(Z);
 
     return Z;

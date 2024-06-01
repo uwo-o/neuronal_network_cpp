@@ -25,6 +25,7 @@ class Vector {
         void cross(Vector *vector);
         void apply(double (*function)(double));
         void set(int index, double value);
+        void accumulate(int index, double value);
         void expand(Vector *vector);
         double sum_elements();
         void print();

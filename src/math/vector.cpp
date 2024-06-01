@@ -41,10 +41,7 @@ double * Vector::get_data() {
 
 void Vector::add(Vector *vector) {
 
-    if (this->size != vector->size) {
-        std::cout << "[ERROR] vectors must have the same size" << std::endl;
-        return;
-    }
+    if (this->size != vector->size) throw "Vectors must have the same size for addition";
 
     for (int i = 0; i < this->size; i++) {
         this->data[i] += vector->data[i];
@@ -54,10 +51,8 @@ void Vector::add(Vector *vector) {
 
 void Vector::subtraction(Vector *vector) {
 
-    if (this->size != vector->size) {
-        std::cout << "[ERROR] vectors must have the same size" << std::endl;
-        return;
-    }
+    if (this->size != vector->size) throw "Vectors must have the same size for subtraction";
+    
 
     for (int i = 0; i < this->size; i++) {
         this->data[i] -= vector->data[i];
@@ -67,10 +62,8 @@ void Vector::subtraction(Vector *vector) {
 
 double Vector::dot(Vector *vector) {
 
-    if (this->size != vector->size) {
-        std::cout << "[ERROR] vectors must have the same size" << std::endl;
-        return -1;
-    }
+    if (this->size != vector->size) throw "Vectors must have the same size for dot product";
+    
 
     double sum = 0;
     for (int i = 0; i < this->size; i++) {
@@ -98,11 +91,15 @@ Vector * Vector::copy() {
 }
 
 void Vector::set(int index, double value) {
-    if (index < 0 || index >= this->size) {
-        std::cout << "[ERROR] index out of bounds" << std::endl;
-        return;
-    }
+    if (index < 0 || index >= this->size) throw "Vectors must have the same size for setting value";
+    
     this->data[index] = value;
+}
+
+void Vector::accumulate(int index, double value) {
+    if (index < 0 || index >= this->size) throw "Vectors must have the same size for setting value";
+    
+    this->data[index] += value;
 }
 
 void Vector::expand(Vector *vector) {
