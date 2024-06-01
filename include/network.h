@@ -17,11 +17,6 @@ class Network {
         std::string name;
         Layer **network;
 
-        double sigmoide(double x);
-        double relu(double x);
-        double d_sigmoide(double x);
-        double d_relu(double x);
-
         double (Network::*activation)(double);
 
     public:

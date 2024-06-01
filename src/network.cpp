@@ -60,22 +60,6 @@ Layer * Network::get_layer(int id) {
     return this->network[id];
 }
 
-double Network::sigmoide(double x) {
-    return 1 / (1 + exp(-x));
-}
-
-double Network::relu(double x) {
-    return x > 0 ? x : 0;
-}
-
-double Network::d_sigmoide(double x) {
-    return sigmoide(x) * (1 - sigmoide(x));
-}
-
-double Network::d_relu(double x) {
-    return x > 0 ? 1 : 0;
-}
-
 int Network::get_layers_size() {
     return this->layers;
 }
