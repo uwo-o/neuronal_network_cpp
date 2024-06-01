@@ -11,8 +11,8 @@ TEST (FEEDFORDWARD, Test_1) {
     network->set_name("test");
 
     Vector * input = new Vector(2);
-    input->insert(0, 1);
-    input->insert(1, 2);
+    input->set(0, 1);
+    input->set(1, 2);
 
     Vector * output = run_feedforward(network, input);
     output->print();
@@ -23,8 +23,8 @@ TEST (FEEDFORDWARD, Test_2) {
     network->set_name("test");
 
     Vector * input = new Vector(2);
-    input->insert(0, 1);
-    input->insert(1, 2);
+    input->set(0, 1);
+    input->set(1, 2);
 
     Vector * output = run_feedforward(network, input);
     output->print();
