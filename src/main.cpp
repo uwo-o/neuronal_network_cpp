@@ -3,21 +3,27 @@
 
 #include "network.h"
 #include "algorithms/feedforward.h"
+#include "algorithms/backpropagation.h"
 
 int main(int argc, char * argv[]){
 
 
-    Network * network = new Network(3, 2, 1, 0.8);
+    double input_neurons = 3;
+    double hidden_neurons = 2;
+    double hidden_layers = 2;
+    double output_neurons = 1;
+    double learning_rate = 0.1;
+
+    Network * network = new Network(input_neurons, hidden_neurons, hidden_layers, output_neurons, learning_rate);
     network->set_name("test");
 
-    Vector * prev_out = network->get_layer(0)->get_neurons();
-    prev_out->print();
-
-    Vector * input = new Vector(3);
+    Vector * input = new Vector(3, true);
 
     Vector * output =run_feedforward(network, input);
 
-    output->print();
+    Vector * expected = new Vector(1, true);
+
+    backpropagation(network, expected, learning_rate);
 
     return 0;
 }
