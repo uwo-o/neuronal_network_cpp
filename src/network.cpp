@@ -14,11 +14,15 @@ Network::Network(int input_size, int neurons_per_hlayer, int hlayers_size, int o
         if (i == 0) {
             this->network[i] = new Layer(i, input_size, input_size);
         } else if (i == hlayers_size + 1) {
-            this->network[i] = new Layer(i, output_size, input_size);
+            if (hlayers_size == 0) {
+                this->network[i] = new Layer(i, output_size, input_size);
+            } else {
+                this->network[i] = new Layer(i, output_size, neurons_per_hlayer);
+            }
         } else if(i == 1) {
             this->network[i] = new Layer(i, neurons_per_hlayer, input_size);
         } else {
-            this->network[i] = new Layer(i, input_size, neurons_per_hlayer);
+            this->network[i] = new Layer(i, neurons_per_hlayer, neurons_per_hlayer);
         }
     }
 
