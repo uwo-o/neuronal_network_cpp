@@ -2,7 +2,7 @@
 
 #include "math/matrix.h"
 
-Matrix::Matrix(int rows, int cols) {
+Matrix::Matrix(int rows, int cols, bool random) {
 
     this->rows = rows;
     this->cols = cols;
@@ -14,7 +14,11 @@ Matrix::Matrix(int rows, int cols) {
 
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
-            this->data[i][j] = ((double) rand() / (RAND_MAX));
+            if (random) {
+                this->data[i][j] = ((double) rand() / (RAND_MAX));
+            } else {
+                this->data[i][j] = 0;
+            }
         }
     }
 
@@ -132,3 +136,28 @@ Matrix * Matrix::transpose() {
     
     return new Matrix(this->cols, this->rows, data);
 }
+
+Matrix * Matrix::identity() {
+    double **data = new double*[this->get_rows()];
+
+    for (int i = 0; i < this->get_rows(); i++) {
+        data[i] = new double[this->get_cols()];
+    }
+
+    for (int i = 0; i < this->get_rows(); i++) {
+        for (int j = 0; j < this->get_cols(); j++) {
+            if (i == j) {
+                data[i][j] = 1;
+            } else {
+                data[i][j] = 0;
+            }
+        }
+    }
+
+    return new Matrix(this->rows, this->cols, data);
+}
+
+Vector * Matrix::to_vector() {
+    return new Vector(this->rows * this->cols, (double *) this->data);
+}
+

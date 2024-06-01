@@ -3,13 +3,17 @@
 
 #include "math/vector.h"
 
-Vector::Vector(int size) {
+Vector::Vector(int size, bool random) {
 
     this->size = size;
     this->data = new double[size];
 
     for (int i = 0; i < size; i++) {
-        this->data[i] = ((double) rand() / (RAND_MAX));
+        if (random) {
+            this->data[i] = ((double) rand() / (RAND_MAX));
+        } else {
+            this->data[i] = 0;
+        }
     }
 
 }
@@ -35,15 +39,6 @@ double * Vector::get_data() {
     return this->data;
 }
 
-void Vector::insert(int index, double value){
-    if (index < 0 || index >= this->size) {
-        std::cout << "[ERROR] index out of bounds" << std::endl;
-        return;
-    }
-
-    this->data[index] = value;
-}
-
 void Vector::add(Vector *vector) {
 
     if (this->size != vector->size) {
@@ -54,6 +49,20 @@ void Vector::add(Vector *vector) {
     for (int i = 0; i < this->size; i++) {
         this->data[i] += vector->data[i];
     }
+
+}
+
+void Vector::subtraction(Vector *vector) {
+
+    if (this->size != vector->size) {
+        std::cout << "[ERROR] vectors must have the same size" << std::endl;
+        return;
+    }
+
+    for (int i = 0; i < this->size; i++) {
+        this->data[i] -= vector->data[i];
+    }
+    
 }
 
 double Vector::dot(Vector *vector) {
@@ -69,23 +78,6 @@ double Vector::dot(Vector *vector) {
     }
 
     return sum;
-}
-
-void Vector::cross(Vector *vector) {
-
-    if (this->size != 3 || vector->size != 3) {
-        std::cout << "[ERROR] vectors must have size 3" << std::endl;
-        return;
-    }
-
-    double *data = new double[3];
-
-    data[0] = this->data[1] * vector->data[2] - this->data[2] * vector->data[1];
-    data[1] = this->data[2] * vector->data[0] - this->data[0] * vector->data[2];
-    data[2] = this->data[0] * vector->data[1] - this->data[1] * vector->data[0];
-
-    delete[] this->data;
-    this->data = data;
 }
 
 void Vector::print() {
@@ -105,16 +97,39 @@ Vector * Vector::copy() {
     return new Vector(this->size, data);
 }
 
-void Vector::apply(double (*function)(double)) {
-    for (int i = 0; i < this->size; i++) {
-        this->data[i] = function(this->data[i]);
-    }
-}
-
 void Vector::set(int index, double value) {
     if (index < 0 || index >= this->size) {
         std::cout << "[ERROR] index out of bounds" << std::endl;
         return;
     }
     this->data[index] = value;
+}
+
+void Vector::expand(Vector *vector) {
+    double *data = new double[this->size + vector->size];
+
+    for (int i = 0; i < this->size; i++) {
+        data[i] = this->data[i];
+    }
+
+    for (int i = 0; i < vector->size; i++) {
+        data[this->size + i] = vector->data[i];
+    }
+
+    delete[] this->data;
+    this->data = data;
+    this->size += vector->size;
+}
+void Vector::apply(double (*function)(double)) {
+    for (int i = 0; i < this->size; i++) {
+        this->data[i] = function(this->data[i]);
+    }
+}
+
+double Vector::sum_elements() {
+    double sum = 0;
+    for (int i = 0; i < this->size; i++) {
+        sum += this->data[i];
+    }
+    return sum;
 }

@@ -12,7 +12,7 @@ class Matrix {
         double **data;
 
     public:
-        Matrix(int rows, int cols);
+        Matrix(int rows, int cols, bool random = false);
         Matrix(int rows, int cols, double **data);
         ~Matrix();
 
@@ -29,6 +29,8 @@ class Matrix {
         Matrix * transpose();
         Matrix * inverse();
         Matrix * scalar(double scalar);
+        Matrix * identity();
+        Vector * to_vector();
 
         void print();
 };

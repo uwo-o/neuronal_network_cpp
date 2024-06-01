@@ -9,7 +9,7 @@ class Vector {
         double *data;
 
     public:
-        Vector(int size);
+        Vector(int size, bool random = false);
         Vector(int size, double *data);
         ~Vector();
 
@@ -17,17 +17,18 @@ class Vector {
         double get(int index);
         double * get_data();
 
-        void insert(int,double);
-
         Vector * copy();
         
         void add(Vector *vector);
+        void subtraction(Vector *vector);
         double dot(Vector *vector);
         void cross(Vector *vector);
         void apply(double (*function)(double));
         void set(int index, double value);
-
+        void expand(Vector *vector);
+        double sum_elements();
         void print();
 };
 
 #endif
+
