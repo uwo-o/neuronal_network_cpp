@@ -5,10 +5,10 @@ Layer::Layer(int id, int neurons, int input_size) {
     this->biases = nullptr;
     this->weights = nullptr;
 
-    this->neurons = new Vector(neurons);
+    this->neurons = new Vector(neurons, true);
     if (id != 0) {
-        this->biases = new Vector(neurons);
-        this->weights = new Matrix(neurons, input_size);
+        this->biases = new Vector(neurons, true);
+        this->weights = new Matrix(neurons, input_size, true);
     }
 }
 
