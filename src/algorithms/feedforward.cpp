@@ -26,10 +26,10 @@ Vector * feedfordward(Vector * input, Layer * current, int size) {
             double b = bias->get(j);
             double a = input->get(j);
             double w = weights->get(i,j);
-            Z->insert(j, a*w + b);
 
+            Z->set(j, a*w + b);
             // Apply the activation function to the output
-            Z->insert(j, sigmoid(Z->get(j)));
+            Z->set(j, sigmoid(Z->get(j)));
             
         }
     }
