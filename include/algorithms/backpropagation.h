@@ -2,5 +2,6 @@
 #include "math/vector.h"
 #include "math/matrix.h"
 #include "layer.h"
+#include "network.h"
 
-void backpropagation(Layer * current, int size, double cost, double learning_rate, Vector * expected);
+void backpropagation(Network * net, Vector *expected, double learning_rate);
