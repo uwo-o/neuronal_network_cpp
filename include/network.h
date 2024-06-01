@@ -20,7 +20,7 @@ class Network {
         double (Network::*activation)(double);
 
     public:
-        Network(int input_size, int hlayers_size, int output_size, double learning_rate);
+        Network(int input_size, int neurons_per_hlayer, int hlayers_size, int output_size, double learning_rate);
         ~Network();
 
         void describe();
