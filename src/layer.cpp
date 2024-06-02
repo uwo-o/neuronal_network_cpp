@@ -5,11 +5,20 @@ Layer::Layer(int id, int neurons, int input_size) {
     this->biases = nullptr;
     this->weights = nullptr;
     
-    this->neurons = new Vector(neurons, true);
-    this->Z = new Vector(neurons);
+    this->neurons = new std::vector<double>(neurons);
+    this->Z = new std::vector<double>(neurons);
+
+    randomize_vector(this->neurons);
+    randomize_vector(this->Z);
+
     if (id != 0) {
-        this->biases = new Vector(neurons, true);
-        this->weights = new Matrix(neurons, input_size, true);
+        this->biases = new std::vector<double>(neurons);
+        randomize_vector(this->biases);
+        this->weights = new std::vector<std::vector<double> *>(neurons);
+        for (int i = 0; i < neurons; i++) {
+            this->weights->at(i) = new std::vector<double>(input_size);
+        }
+        randomize_matrix(this->weights);
     }
 }
 
@@ -19,7 +28,7 @@ Layer::~Layer() {
     delete this->weights;
 }
 
-void Layer::set_input(Vector *input) {
+void Layer::set_input(std::vector<double> *input) {
     this->input = input;
 }
 
@@ -28,19 +37,28 @@ void Layer::print() {
     
     if (this->weights != nullptr) {
         std::cout << "Weights: " << std::endl;
-        this->weights->print();
+        for (int i = 0; i < this->weights->size(); i++) {
+            for (int j = 0; j < this->weights->at(i)->size(); j++) {
+                std::cout << this->weights->at(i)->at(j) << " ";
+            }
+            std::cout << "\n";
+        }
         std::cout << "\n";
     }
     
     if (this->biases != nullptr) {
         std::cout << "Biases: " << std::endl;
-        this->biases->print();
+        for (int i = 0; i < this->biases->size(); i++) {
+            std::cout << this->biases->at(i) << " ";
+        }
         std::cout << "\n";
     }
 
     if (this->neurons !=nullptr) {
         std::cout << "Neurons: " << std::endl;
-        this->neurons->print();
+        for (int i = 0; i < this->neurons->size(); i++) {
+            std::cout << this->neurons->at(i) << " ";
+        }
         std::cout << "\n";
     }
 
@@ -51,30 +69,30 @@ int Layer::get_id() {
     return this->id;
 }
 
-Vector * Layer::get_biases() {
+std::vector<double> * Layer::get_biases() {
     return this->biases;
 }
 
-Matrix * Layer::get_weights() {
+std::vector<std::vector<double> *> * Layer::get_weights() {
     return this->weights;
 }
 
-Vector * Layer::get_neurons() {
+std::vector<double> * Layer::get_neurons() {
     return this->neurons;
 }
 
-void Layer::set_neurons(Vector * neurons) {
+void Layer::set_neurons(std::vector<double> * neurons) {
     if (neurons != nullptr)
         delete this->neurons;
     this->neurons = neurons;
 }
 
-void Layer::set_Z(Vector * Z) {
+void Layer::set_Z(std::vector<double> * Z) {
     if (Z != nullptr)
         delete this->Z;
     this->Z = Z;
 }
 
-Vector * Layer::get_Z() {
+std::vector<double> * Layer::get_Z() {
     return this->Z;
 }

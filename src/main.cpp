@@ -3,17 +3,26 @@
 
 #include "math/activation.h"
 #include "model.h"
+#include "io.h"
 
 int main(int argc, char * argv[]){
 
 
-    double input_neurons = 1;
-    double hidden_neurons = 3;
-    double hidden_layers = 3;
-    double output_neurons = 1;
+    double input_neurons = 784;
+    double hidden_neurons = 16;
+    double hidden_layers = 1;
+    double output_neurons = 10;
     double learning_rate = 0.01;
 
-    Model * model = new Model("test", input_neurons, hidden_neurons, hidden_layers, output_neurons, learning_rate);
+    Data * data = read_csv("/home/uwo/Projects/neuronal_network_cpp/data/MNIST/mnist_train.csv");
+
+    normalize_data_zero_to_one(data);
+
+    Model * model = new Model("MNIST", input_neurons, hidden_neurons, hidden_layers, output_neurons, learning_rate);
+    model->set_activation(sigmoid);
+    model->set_d_activation(d_sigmoid);
+    model->train(data, 10);
+
 
     return 0;
 }

@@ -1,8 +1,8 @@
-#include "math/matrix.h"
+
 #include "math/activation.h"
-#include "math/vector.h"
+#include "math/functions.h"
 #include "network.h"
 #include "layer.h"
 
-Vector * feedfordward( Vector * input, Layer * current, double (activation)(double));
-Vector * run_feedforward(Network * network, Vector * input);
+std::vector<double> * feedfordward( std::vector<double> * input, Layer * current, double (activation)(double));
+std::vector<double> * run_feedforward(Network * network, std::vector<double> * input);

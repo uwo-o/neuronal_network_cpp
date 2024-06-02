@@ -5,6 +5,7 @@
 #include <list>
 
 #include "network.h"
+#include "io.h"
 #include "algorithms/feedforward.h"
 #include "algorithms/backpropagation.h"
 
@@ -20,8 +21,8 @@ class Model {
         void set_activation(double (*activation)(double));
         void set_d_activation(double (*d_activation)(double));
 
-        void train(std::list<Vector *> * input_set, std::list<Vector *> * expected_set, int epochs);
-        Vector * predict(Vector * input);
+        void train(Data * data, int epochs);
+        std::vector<double> * predict(std::vector<double> * input);
 };
 
 #endif

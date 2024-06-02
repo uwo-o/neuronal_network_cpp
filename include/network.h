@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <math.h>
+#include <vector>
 
 #include "layer.h"
 class Network {
@@ -28,9 +29,9 @@ class Network {
 
         Layer * get_layer(int id);
 
-        void set_input(Vector *input);
+        void set_input(std::vector<double> *input);
 
-        Vector * get_output();
+        std::vector<double> * get_output();
 
         void set_name(std::string name);
         std::string get_name();
