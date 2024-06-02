@@ -1,6 +1,6 @@
 #include "algorithms/feedforward.h"
 
-Vector * feedfordward(Vector * input, Layer * current, int size) {
+Vector * feedfordward(Vector * input, Layer * current, int size, double (*activation)(double)) {
 
     int input_size = input->get_size();
     Matrix * weights = current->get_weights();
@@ -31,9 +31,13 @@ Vector * feedfordward(Vector * input, Layer * current, int size) {
         }
     }
 
+    Vector * Z_c = Z->copy();
+    current->set_Z(Z_c);
+
     for (int i = 0; i < Z->get_size(); i++) {
-        Z->set(i, sigmoid(Z->get(i)));
+        Z->set(i, activation(Z->get(i)));
     }
+
     current->set_neurons(Z);
 
     return Z;
@@ -42,11 +46,12 @@ Vector * feedfordward(Vector * input, Layer * current, int size) {
 Vector * run_feedforward(Network * network, Vector * input) {
     int size = network->get_layers_size();
 
+    network->get_layer(0)->set_neurons(input);
      Vector *  prev_output = input;
     try {
         for (int i = 1; i < size; i++) {
             Layer * current = network->get_layer(i);
-            prev_output = feedfordward(prev_output, current, size);
+            prev_output = feedfordward(prev_output, current, size, network->get_activation());
         }
     }
     catch (char const * err){
