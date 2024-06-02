@@ -13,6 +13,7 @@ class Layer {
         Vector *input;
         Matrix *weights;
         Vector *biases;
+        Vector *Z;
         double (*activation)(double);
 
     public:
@@ -31,11 +32,13 @@ class Layer {
         Vector * get_neurons();
         Vector * get_biases();
         Matrix * get_weights();
+        Vector * get_Z();
 
         void set_weights(Matrix * weights);
         void set_biases(Vector * biases);
         void set_activation(double (*activation)(double));
         void set_neurons(Vector * neurons);
+        void set_Z(Vector * Z);
 };
 
 #endif

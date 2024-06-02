@@ -4,8 +4,9 @@ Layer::Layer(int id, int neurons, int input_size) {
     this->id = id;
     this->biases = nullptr;
     this->weights = nullptr;
-
+    
     this->neurons = new Vector(neurons, true);
+    this->Z = new Vector(neurons);
     if (id != 0) {
         this->biases = new Vector(neurons, true);
         this->weights = new Matrix(neurons, input_size, true);
@@ -66,4 +67,14 @@ void Layer::set_neurons(Vector * neurons) {
     if (neurons != nullptr)
         delete this->neurons;
     this->neurons = neurons;
+}
+
+void Layer::set_Z(Vector * Z) {
+    if (Z != nullptr)
+        delete this->Z;
+    this->Z = Z;
+}
+
+Vector * Layer::get_Z() {
+    return this->Z;
 }
