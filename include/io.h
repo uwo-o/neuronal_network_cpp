@@ -18,6 +18,6 @@ struct Data {
 
 Data read_csv(std::string filename);
 static void write_csv(std::string filename, std::vector<Data> data);
-
+Data normalize_data_zero_to_one(Data data);
 
 #endif

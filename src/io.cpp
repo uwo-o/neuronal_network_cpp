@@ -39,3 +39,14 @@ Data read_csv(std::string filename){
 
     return data;
 }
+
+Data normalize_data_zero_to_one(Data data){
+
+    for (int i = 0; i < data.inputs.size(); i++){ 
+        for (int j = 0; j < data.inputs[i].size(); j++){
+            data.inputs[i][j] = data.inputs[i][j] / 255;
+        }
+    }
+
+    return data;
+}
