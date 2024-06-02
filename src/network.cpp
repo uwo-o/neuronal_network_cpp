@@ -67,3 +67,19 @@ Layer * Network::get_layer(int id) {
 int Network::get_layers_size() {
     return this->layers;
 }
+
+void Network::set_activation(double (activation)(double)) {
+    this->activation = activation;
+}
+
+double (*Network::get_activation())(double) {
+    return this->activation;
+}
+
+void Network::set_d_activation(double (dactivation)(double)) {
+    this->d_activation = dactivation;
+}
+
+double (*Network::get_d_activation())(double) {
+    return this->d_activation;
+}

@@ -5,7 +5,6 @@
 #include <math.h>
 
 #include "layer.h"
-
 class Network {
     private:
 
@@ -17,7 +16,8 @@ class Network {
         std::string name;
         Layer **network;
 
-        double (Network::*activation)(double);
+        double (*activation)(double);
+        double (*d_activation)(double);
 
     public:
         Network(int input_size, int neurons_per_hlayer, int hlayers_size, int output_size, double learning_rate);
@@ -38,6 +38,9 @@ class Network {
         int get_layers_size();
 
         void set_activation(double (*activation)(double));
+        double (*get_activation())(double);
+        void set_d_activation(double (*dactivation)(double));
+        double (*get_d_activation())(double);
 };
 
 #endif
