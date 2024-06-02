@@ -7,3 +7,19 @@ double sigmoid(double x) {
 double d_sigmoid(double x) {
     return sigmoid(x)*(1-sigmoid(x));
 }
+
+double relu(double x) {
+    return x > 0 ? x : 0;
+}
+
+double d_relu(double x) {
+    return x > 0 ? 1 : 0;
+}
+
+double linear(double x) {
+    return x;
+}
+
+double d_linear(double x) {
+    return 1;
+}
