@@ -54,6 +54,9 @@ Then at the same folder you will find the executable file `nnc`.
 Based and inspired by [Neuronal Networks - 3Blue1Brown](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&ab_channel=3Blue1Brown)
 
 ### References
+#### Data
+- [MNIST](https://git-disl.github.io/GTDLBench/datasets/mnist_datasets/)
+
 #### Backpropagation algorithm
 - [Backpropagation](https://en.wikipedia.org/wiki/Backpropagation)
 - [Understanding Backpropagation Algorithm](https://towardsdatascience.com/understanding-backpropagation-algorithm-7bb3aa2f95fd)
