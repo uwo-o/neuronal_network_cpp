@@ -12,6 +12,7 @@
 
 struct Data {
     std::vector<double> *expected;
+    std::vector<std::vector<double> *> *outputs;
     std::vector<std::vector<double> *> *inputs;
     int size;
 };

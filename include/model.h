@@ -23,6 +23,7 @@ class Model {
 
         void train(Data * data, int epochs);
         std::vector<double> * predict(std::vector<double> * input);
+        std::vector<double> * generate_output_by_index(int index);
 };
 
 #endif

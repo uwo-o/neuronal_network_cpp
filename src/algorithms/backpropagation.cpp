@@ -8,14 +8,13 @@ void backpropagation(Network * net, std::vector<double> *expected, double learni
     Layer *prev_layer = net->get_layer(net_size - 2);
 
     std::vector<double> *output = copy(output_layer->get_neurons());
+    std::vector<double> * d_error = copy(expected);
 
+    sustraction(d_error, output);
     sustraction(output, expected);
 
     double error = (pow(sum_elements(output),2))/2;
     std::cout << "Error: " << error << std::endl;
-
-    std::vector<double> * d_error = copy(expected);
-    sustraction(d_error, output);
 
     std::vector<double> *prev_output = prev_layer->get_neurons();
     std::vector<std::vector<double> *> *output_weights = output_layer->get_weights();
@@ -35,16 +34,16 @@ void backpropagation(Network * net, std::vector<double> *expected, double learni
     }
 
     delete d_error;
-    
+
     // Update output weights
     for(int i = 0; i<output_weights->size(); i++) {
         for( int j = 0; j<output_weights->at(0)->size(); j++){
 
-            double w = output_weights->at(j)->at(i);
-            double a = prev_output->at(i);
-            double delta = deltas->at(j);
+            double w = output_weights->at(i)->at(j);
+            double a = prev_output->at(j);
+            double delta = deltas->at(i);
 
-            output_weights->at(j)->at(i) = w - (learning_rate * a * delta);
+            output_weights->at(i)->at(j) = w - (learning_rate * a * delta);
         }
     }
     
@@ -74,6 +73,8 @@ void backpropagation(Network * net, std::vector<double> *expected, double learni
             d_activation->at(i) = net->get_d_activation()(Z->at(i));
         }
 
+        
+
         std::vector<double> *n_deltas = new std::vector<double>(Z->size());
         std::vector<double> *aux_deltas = new std::vector<double>(n_deltas->size());
 
@@ -84,12 +85,14 @@ void backpropagation(Network * net, std::vector<double> *expected, double learni
             }
         }
 
+        
+
         // Calculate the deltas for the current layer
         for (int i = 0; i < weights->size(); i++) {
             for( int j = 0; j < weights->at(0)->size(); j++){
 
-                double w = weights->at(j)->at(i);
-                double d = aux_deltas->at(i);
+                double w = weights->at(i)->at(j);
+                double d = aux_deltas->at(j);
 
                 acumulate(n_deltas, j, w * d);
             }
@@ -100,11 +103,11 @@ void backpropagation(Network * net, std::vector<double> *expected, double learni
         // Update the weights
         for(int i = 0; i<weights->size(); i++) {
             for( int j = 0; j<weights->at(0)->size(); j++){
-                double w = weights->at(j)->at(i);
-                double delta = n_deltas->at(i);
+                double w = weights->at(i)->at(j);
+                double delta = n_deltas->at(j);
                 double a = prev_output->at(j);
 
-                weights->at(j)->at(i) = w - (learning_rate * a * delta);
+                weights->at(i)->at(j) = w - (learning_rate * a * delta);
             }
         }
 

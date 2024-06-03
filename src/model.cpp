@@ -31,12 +31,24 @@ void Model::train(Data * data, int epochs){
         std::cout << "Epoch: " << i + 1 << "/" << epochs << ":" << std::endl;
 
         for (int j = 0; j < data->size; j++){
+            std::cout << "Training: " << j + 1 << "/" << data->size << std::endl;
             run_feedforward(this->network, data->inputs->at(j));
-            backpropagation(this->network, data->expected, this->learning_rate);
+            backpropagation(this->network, data->outputs->at(j), this->learning_rate);
         }
     }
 }
 
 std::vector<double> * Model::predict(std::vector<double> * input){
     return run_feedforward(this->network, input);
+}
+
+std::vector<double> * Model::generate_output_by_index(int index){
+    std::vector<double> * output = new std::vector<double>(10, 0);
+
+    if (index < 0 || index > 9){
+        return output;
+    }
+
+    output->at(index) = 1;
+    return output;
 }

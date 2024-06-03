@@ -11,14 +11,12 @@ std::vector<double> * feedfordward(std::vector<double> * input, Layer * current,
 
     std::vector<double> * Z = new std::vector<double>(bias->size());
 
-    if (l_id == 1) {
+    if (l_id == 0) {
         std::vector<std::vector<double>*>* weights = transpose(current->get_weights());
     }
 
     int rows = weights->size();
     int cols = weights->at(0)->size();
-
-    std::cout << weights->at(0)->size() << " " << rows << std::endl;
 
     if (cols != input_size) {
         throw "Input vector size does not match the weights size";
@@ -26,19 +24,11 @@ std::vector<double> * feedfordward(std::vector<double> * input, Layer * current,
 
     for(int i = 0; i<cols; i++) {
         for( int j = 0; j<rows; j++){
-            std::cout << i << " " << j << " " << weights->at(j)->at(i) << std::endl;
             double a = input->at(i);
             double b = bias->at(j);
             double w = weights->at(j)->at(i);
             acumulate(Z, j, a*w + b);
         }
-    }
-
-    if (l_id == 1) {
-        for (int i = 0; i < weights->size() -1 ; i++) {
-            delete weights->at(i);
-        }
-        delete weights;
     }
 
     std::vector<double> * Z_c = copy(Z);

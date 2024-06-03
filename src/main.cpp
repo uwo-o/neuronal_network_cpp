@@ -18,7 +18,14 @@ int main(int argc, char * argv[]){
 
     normalize_data_zero_to_one(data);
 
+    data->outputs = new std::vector<std::vector<double> *>();
+
     Model * model = new Model("MNIST", input_neurons, hidden_neurons, hidden_layers, output_neurons, learning_rate);
+
+    for(int i = 0; i < data->expected->size(); i++){
+        data->outputs->push_back(model->generate_output_by_index((int) (data->expected->at(i))));
+    }
+
     model->set_activation(sigmoid);
     model->set_d_activation(d_sigmoid);
     model->train(data, 10);
