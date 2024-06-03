@@ -18,12 +18,12 @@ A personal project to implement a neuronal network in C++.
 
 🟢 Create basic neuronal network.
 
-🔵 Implement backprogation algorithm.
+🔵 Implement backpropagation algorithm.
 
-- 🔵 Implement gradient descent algorithm.
-- 🟢 Implement feedforward algorithm
-- ⚪️ Use the backpropagation algorithm to train the network.
-- ⚪️ Implement the feedforward algorithm.
+- 🟢 Implement gradient descent algorithm.
+- 🟢 Implement feedforward algorithm.
+- 🟢 Use the backpropagation algorithm to train the network.
+- 🔵 Check issues in the algorithms and solve them.
 
 ⚪️ Paralellize with kokos Kokkos.
 
