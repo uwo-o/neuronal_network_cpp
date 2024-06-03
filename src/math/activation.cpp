@@ -23,3 +23,11 @@ double linear(double x) {
 double d_linear(double x) {
     return 1;
 }
+
+double tanh(double x) {
+    return std::tanh(x);
+}
+
+double d_tanh(double x) {
+    return 1 - std::pow(tanh(x), 2);
+}

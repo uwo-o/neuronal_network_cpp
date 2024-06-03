@@ -20,21 +20,24 @@ void Model::set_activation(double (*activation)(double)){
 
 void Model::train(Data * data, int epochs){
 
+    std::cout << "========================================" << std::endl;
     std::cout << "Training model: " << this->network->get_name() << std::endl;
     std::cout << "Learning rate: " << this->learning_rate << std::endl;
     std::cout << "Epochs: " << epochs << std::endl;
     std::cout << "Data size: " << data->size << std::endl;
-    std::cout << "====================================" << std::endl;
-
-    for (int i = 0; i < epochs; i++){
-
+    std::cout << "========================================" << std::endl;
+    std::vector<double> * output;
+    for (int i = 9; i < epochs; i++){
         std::cout << "Epoch: " << i + 1 << "/" << epochs << ":" << std::endl;
-
-        for (int j = 0; j < data->size; j++){
+        for (int j = 0; j < 60000; j++){
             std::cout << "Training: " << j + 1 << "/" << data->size << std::endl;
-            run_feedforward(this->network, data->inputs->at(j));
-            backpropagation(this->network, data->outputs->at(j), this->learning_rate);
+            output = run_feedforward(this->network, data->inputs->at(j));
+            run_backpropagation(this->network, data->outputs->at(j), this->learning_rate);
         }
+          
+    }
+    for (int i = 0; i < 10; i++){
+        std::cout << output->at(i) << std::endl;
     }
 }
 

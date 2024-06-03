@@ -12,7 +12,7 @@ int main(int argc, char * argv[]){
     double hidden_neurons = 16;
     double hidden_layers = 1;
     double output_neurons = 10;
-    double learning_rate = 0.01;
+    double learning_rate = 0.1;
 
     Data * data = read_csv("/home/uwo/Projects/neuronal_network_cpp/data/MNIST/mnist_train.csv");
 
