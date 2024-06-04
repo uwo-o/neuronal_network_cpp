@@ -3,6 +3,8 @@
 
 #include <vector>
 
+#include "utils/garbage.h"
+
 void acumulate(std::vector<double> * vec, int pos, int value);
 void sustraction(std::vector<double> * vec_1, std::vector<double> * vec_2);
 std::vector<double> * copy(std::vector<double> *);
@@ -11,5 +13,12 @@ std::vector<std::vector<double>*> * transpose(std::vector<std::vector<double>*> 
 
 void randomize_vector(std::vector<double> * vec);
 void randomize_matrix(std::vector<std::vector<double>*> * matrix);
+
+double dot(std::vector<double> * vec_1, std::vector<double> * vec_2);
+
+std::vector<double> * vec_sub(std::vector<double> * vec_1, std::vector<double> * vec_2);
+std::vector<double> * vec_scalar(std::vector<double> * vec_1, double scalar);
+std::vector<double> * vec_apply(std::vector<double> * vec_1, double (*f)(double));
+std::vector<double> * vec_mult(std::vector<double> * vec_1, std::vector<double> * vec_2);
 
 #endif

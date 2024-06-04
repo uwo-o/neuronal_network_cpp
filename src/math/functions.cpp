@@ -53,3 +53,58 @@ void randomize_matrix(std::vector<std::vector<double>*> * matrix){
         randomize_vector(matrix->at(i));
     }
 }
+
+double dot(std::vector<double> * vec_1, std::vector<double> * vec_2){
+    double result = 0;
+    for (int i = 0; i < vec_1->size(); i++) {
+        result += vec_1->at(i) * vec_2->at(i);
+    }
+    return result;
+}
+
+
+std::vector<double> * vec_sub(std::vector<double> * vec_1, std::vector<double> * vec_2){
+    std::vector<double> * result = new std::vector<double>(vec_1->size());
+
+    Garbage::add((void *)result);
+
+    for (int i = 0; i < vec_1->size(); i++) {
+        result->at(i) = vec_1->at(i) - vec_2->at(i);
+    }
+    return result;
+}
+
+std::vector<double> * vec_scalar(std::vector<double> * vec_1, double scalar){
+    std::vector<double> * result = new std::vector<double>(vec_1->size());
+
+    Garbage::add((void *)result);
+
+    for (int i = 0; i < vec_1->size(); i++) {
+        result->at(i) = vec_1->at(i) * scalar;
+    }
+    return result;
+}
+
+std::vector<double> * vec_apply(std::vector<double> * vec_1, double (*f)(double)){
+    std::vector<double> * result = new std::vector<double>(vec_1->size());
+
+    Garbage::add((void *)result);
+
+    for (int i = 0; i < vec_1->size(); i++) {
+        result->at(i) = f(vec_1->at(i));
+    }
+    return result;
+}
+
+std::vector<double> * vec_mult(std::vector<double> * vec_1, std::vector<double> * vec_2){
+    std::vector<double> * result = new std::vector<double>(vec_1->size());
+
+    Garbage::add((void *)result);
+
+    for (int i = 0; i < vec_1->size(); i++) {
+        for (int j = 0; j < vec_2->size(); j++) {
+            result->at(i) += vec_1->at(i) * vec_2->at(j);
+        }
+    }
+    return result;
+}
