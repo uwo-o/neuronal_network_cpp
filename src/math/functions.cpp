@@ -30,8 +30,12 @@ double sum_elements(std::vector<double> * vec){
 
 std::vector<std::vector<double>*> * transpose(std::vector<std::vector<double>*> * matrix){
     std::vector<std::vector<double>*> * transposed = new std::vector<std::vector<double>*>(matrix->at(0)->size());
+
+    Garbage::add((void *)transposed);
+
     for (int i = 0; i < matrix->at(0)->size(); i++) {
         transposed->at(i) = new std::vector<double>(matrix->size());
+        Garbage::add((void *)transposed->at(i));
     }
 
     for (int i = 0; i < matrix->size(); i++) {
@@ -106,5 +110,30 @@ std::vector<double> * vec_mult(std::vector<double> * vec_1, std::vector<double> 
             result->at(i) += vec_1->at(i) * vec_2->at(j);
         }
     }
+    return result;
+}
+
+std::vector<double> * vec_mult(std::vector<std::vector<double>  *> * matrix, std::vector<double> * vec){
+    std::vector<double> * result = new std::vector<double>(matrix->size());
+
+    Garbage::add((void *)result);
+
+    for (int i = 0; i < matrix->size(); i++) {
+        for (int j = 0; j < matrix->at(i)->size(); j++) {
+            result->at(i) += matrix->at(i)->at(j) * vec->at(j);
+        }
+    }
+    return result;
+}
+
+std::vector<double> * vec_cross(std::vector<double> * vec_1, std::vector<double> * vec_2){
+    std::vector<double> * result = new std::vector<double>(vec_1->size());
+
+    Garbage::add((void *)result);
+
+    result->at(0) = vec_1->at(1) * vec_2->at(2) - vec_1->at(2) * vec_2->at(1);
+    result->at(1) = vec_1->at(2) * vec_2->at(0) - vec_1->at(0) * vec_2->at(2);
+    result->at(2) = vec_1->at(0) * vec_2->at(1) - vec_1->at(1) * vec_2->at(0);
+    
     return result;
 }

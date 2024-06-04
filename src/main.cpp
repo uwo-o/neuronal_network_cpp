@@ -16,7 +16,7 @@ int main(int argc, char * argv[]){
 
     Data * data = read_csv("/home/uwo/Projects/neuronal_network_cpp/data/MNIST/mnist_train.csv");
 
-    normalize_data_zero_to_one(data);
+    //normalize_data_zero_to_one(data);
 
     data->outputs = new std::vector<std::vector<double> *>();
 
@@ -26,8 +26,8 @@ int main(int argc, char * argv[]){
         data->outputs->push_back(model->generate_output_by_index((int) (data->expected->at(i))));
     }
 
-    model->set_activation(sigmoid);
-    model->set_d_activation(d_sigmoid);
+    model->set_activation(relu);
+    model->set_d_activation(d_relu);
     model->train(data, 10);
 
 

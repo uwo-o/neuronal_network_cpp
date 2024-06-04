@@ -29,7 +29,7 @@ void Model::train(Data * data, int epochs){
     std::vector<double> * output;
     for (int i = 9; i < epochs; i++){
         std::cout << "Epoch: " << i + 1 << "/" << epochs << ":" << std::endl;
-        for (int j = 0; j < 60000; j++){
+        for (int j = 0; j < 600; j++){
             std::cout << "Training: " << j + 1 << "/" << data->size << std::endl;
             output = run_feedforward(this->network, data->inputs->at(j));
             run_backpropagation(this->network, data->outputs->at(j), this->learning_rate);
