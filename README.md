@@ -22,7 +22,7 @@ A personal project to implement a neuronal network in C++.
 
 - 🟢 Implement gradient descent algorithm.
 - 🟢 Implement feedforward algorithm.
-- 🟢 Use the backpropagation algorithm to train the network.
+- 🔵 Use the backpropagation algorithm to train the network.
 - 🔵 Check issues in the algorithms and solve them.
 
 ⚪️ Paralellize with kokos Kokkos.
