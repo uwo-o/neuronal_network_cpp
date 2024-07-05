@@ -1,35 +1,29 @@
 #include <iostream>
-#include <math.h>
 
-#include "math/activation.h"
-#include "model.h"
-#include "io.h"
+#include "Eigen/Dense"
 
-int main(int argc, char * argv[]){
+using namespace std;
 
+static const int INPUT_SIZE = 2;
+static const int HIDDEN_SIZE = 3;
+static const int OUTPUT_SIZE = 1;
 
-    double input_neurons = 784;
-    double hidden_neurons = 16;
-    double hidden_layers = 1;
-    double output_neurons = 10;
-    double learning_rate = 0.1;
+int main() {
+    
+    Eigen::MatrixXd input(INPUT_SIZE, 1);
+    input.setRandom();
 
-    Data * data = read_csv("/home/uwo/Projects/neuronal_network_cpp/data/MNIST/mnist_train.csv");
+    Eigen::MatrixXd iw(HIDDEN_SIZE, INPUT_SIZE);
+    iw.setRandom();
 
-    //normalize_data_zero_to_one(data);
+    Eigen::MatrixXd weights(OUTPUT_SIZE, HIDDEN_SIZE);
+    weights.setRandom();
 
-    data->outputs = new std::vector<std::vector<double> *>();
+    Eigen::MatrixXd wo(OUTPUT_SIZE, HIDDEN_SIZE);
+    wo.setRandom();
 
-    Model * model = new Model("MNIST", input_neurons, hidden_neurons, hidden_layers, output_neurons, learning_rate);
-
-    for(int i = 0; i < data->expected->size(); i++){
-        data->outputs->push_back(model->generate_output_by_index((int) (data->expected->at(i))));
-    }
-
-    model->set_activation(relu);
-    model->set_d_activation(d_relu);
-    model->train(data, 10);
-
+    Eigen::MatrixXd output(OUTPUT_SIZE, 1);
+    output.setZero();
 
     return 0;
 }
