@@ -1,6 +1,6 @@
 #include <iostream>
 
-#include "Eigen/Dense"
+#include "network.h"
 
 using namespace std;
 
@@ -10,20 +10,8 @@ static const int OUTPUT_SIZE = 1;
 
 int main() {
     
-    Eigen::MatrixXd input(INPUT_SIZE, 1);
-    input.setRandom();
-
-    Eigen::MatrixXd iw(HIDDEN_SIZE, INPUT_SIZE);
-    iw.setRandom();
-
-    Eigen::MatrixXd weights(OUTPUT_SIZE, HIDDEN_SIZE);
-    weights.setRandom();
-
-    Eigen::MatrixXd wo(OUTPUT_SIZE, HIDDEN_SIZE);
-    wo.setRandom();
-
-    Eigen::MatrixXd output(OUTPUT_SIZE, 1);
-    output.setZero();
+    Network network(INPUT_SIZE, HIDDEN_SIZE, OUTPUT_SIZE);
+    network.describe();
 
     return 0;
 }
