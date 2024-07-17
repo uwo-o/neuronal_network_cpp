@@ -3,21 +3,27 @@
 
 #include <Eigen/Dense>
 #include <iostream>
-class Network {
-  private:
-    Eigen::MatrixXd input;
-    Eigen::MatrixXd hidden;
-    Eigen::MatrixXd output;
-    public:
-        Network(int input, int hidden, int output);
-        ~Network();
-        void forward();
-        void backward();
-        void train();
-        void predict();
-        void save();
-        void load();
-        void describe();
+class Network
+{
+private:
+  Eigen::MatrixXd hidden;
+  Eigen::VectorXd output;
+
+  Eigen::MatrixXd hidden_b;
+  Eigen::VectorXd output_b;
+
+  bool has_hidden;
+
+public:
+  Network(int hidden, int hidden_layers, int output);
+  ~Network();
+  Eigen::VectorXd forward(Eigen::VectorXd input);
+  void backward();
+  void train();
+  void predict();
+  void save();
+  void load();
+  void describe();
 };
 
 #endif
