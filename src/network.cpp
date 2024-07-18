@@ -36,6 +36,26 @@ Network::~Network()
 
 void Network::describe()
 {
+    if (has_hidden)
+    {
+        std::cout << "-------------------\n";
+        std::cout << "Hidden layer:\n";
+        std::cout << "===================\n";
+        std::cout << "Weigths:\n";
+        std::cout << this->hidden << std::endl;
+        std::cout << "Biases:\n";
+        std::cout << this->hidden_b;
+        std::cout << std::endl;
+        }
+    std::cout << "-------------------\n";
+    std::cout << "Output layer:\n";
+    std::cout << "===================\n";
+    std::cout << "Weigths:\n";
+    std::cout << this->output << std::endl;
+    std::cout << "Biases:\n";
+    std::cout << this->output_b;
+    std::cout << std::endl;
+    std::cout << "-------------------\n";
 }
 
 Eigen::VectorXd Network::forward(Eigen::VectorXd input)
