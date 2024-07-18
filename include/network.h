@@ -18,7 +18,7 @@ public:
   Network(int hidden, int hidden_layers, int output);
   ~Network();
   Eigen::VectorXd forward(Eigen::VectorXd input);
-  void backward();
+  void backpropagation();
   void train();
   void predict();
   void save();
