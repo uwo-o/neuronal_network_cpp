@@ -19,3 +19,13 @@ float d_ReLu(float v)
 {
     return v > 0 ? 1 : 0;
 }
+
+double sigmoid(double v)
+{
+    return 1 / (1 - exp(-v));
+}
+
+double d_sigmoid(double v)
+{
+    return sigmoid(v) * (1 - sigmoid(v));
+}

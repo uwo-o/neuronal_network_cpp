@@ -1,6 +1,8 @@
 #ifndef ACTIVATION_FUNCTIONS_H
 #define ACTIVATION_FUNCTIONS_H
 
+#include <cmath>
+
 float ReLu(float);
 float d_ReLu(float);
 
