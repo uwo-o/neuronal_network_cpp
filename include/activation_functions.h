@@ -7,7 +7,7 @@ float d_ReLu(float);
 float Sigmoid(float);
 float d_Sigmoid(float);
 
-float lineal(float);
-float d_lineal(float);
+float linear(float);
+float d_linear(float);
 
 #endif

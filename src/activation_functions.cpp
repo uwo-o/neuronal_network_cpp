@@ -1,11 +1,11 @@
 #include "activation_functions.h"
 
-float lineal(float v)
+float linear(float v)
 {
     return v;
 }
 
-float d_lineal(float v)
+float d_linear(float v)
 {
     return 1;
 }
