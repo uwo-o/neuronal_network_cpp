@@ -1,11 +1,11 @@
 #include "activation_functions.h"
 
-float none(float v)
+float lineal(float v)
 {
     return v;
 }
 
-float d_none(float v)
+float d_lineal(float v)
 {
     return 1;
 }
@@ -17,5 +17,5 @@ float ReLu(float v)
 
 float d_ReLu(float v)
 {
-    return 1;
+    return v > 0 ? 1 : 0;
 }
