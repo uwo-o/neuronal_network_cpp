@@ -67,34 +67,26 @@ double Network::backpropagation(int layer, double error, double learning_rate, i
     if (!has_hidden)
         return output(neuron);
 
-    double a_sum = 0;
-
-    if (layer == 0)
+    if (layer <= 0)
     {
         return this->hidden.col(0).sum();
     }
 
-    std::cout << layer << std::endl;
-
-    for (int i = 0; i < this->hidden.col(layer).size(); ++i)
+    for (int i = 0; i < this->hidden.transpose().col(layer).size(); ++i)
     {
-        error *= this->hidden(layer, i);
+        error *= this->hidden.transpose()(i, layer);
         int a = backpropagation(layer - 1, error, learning_rate, i);
-        a_sum += a;
-        this->hidden(layer, i) -= error * a * learning_rate;
-        this->hidden(layer, i) -= error * learning_rate;
+        this->hidden.transpose()(i, layer) -= error * a * learning_rate;
+        this->hidden.transpose()(i, layer) -= error * learning_rate;
+        std::cout << this->hidden << std::endl;
     }
-
-    return a_sum;
 }
 
 void Network::train(Eigen::VectorXd value, Eigen::VectorXd expected, double learning_rate)
 {
-
     for (int i = 0; i < output.size(); ++i)
     {
         double d_cost_value = this->d_cost_function(value[i], expected[i]);
-
         // TO-DO CHANGE IT FOR VARIABLE FUNCTION
         double error = d_linear(d_cost_value) * d_cost_value;
         error *= this->output(i);
@@ -112,7 +104,6 @@ void Network::train(Eigen::VectorXd value, Eigen::VectorXd expected, double lear
 
 void Network::start_training(std::vector<std::vector<Eigen::VectorXd>> training_set, int times, double learning_rate)
 {
-
     for (int i = 0; i < times; ++i)
     {
         for (int j = 0; j < training_set.size(); ++j)
@@ -150,11 +141,9 @@ void Network::describe()
 
 Eigen::VectorXd Network::forward(Eigen::VectorXd input)
 {
-
     if (!has_hidden)
     {
         Eigen::VectorXd result(this->output.size());
-
         for (int i = 0; i < this->output.size(); ++i)
         {
             for (int j = 0; j < input.size(); ++j)
@@ -179,27 +168,30 @@ Eigen::VectorXd Network::forward(Eigen::VectorXd input)
         }
     }
 
-    step_1.col(0) += this->hidden_b.col(0);
+    step_1.transpose().col(0) += this->hidden_b.col(0).transpose();
 
-    for (int i = 1; i < this->hidden.cols(); ++i)
+    for (int i = 0; i < step_1.cols(); ++i)
     {
-        for (int j = 0; j < this->hidden.rows(); ++j)
+        for (int j = 0; j < step_1.rows(); ++j)
         {
-            for (int k = 0; k < this->hidden.rows(); ++k)
+            for (int k = 0; k < step_1.rows(); ++k)
             {
-                step_1(i, j) = step_1(i - 1, k) * this->hidden(i, j);
+                if (i + 1 > step_1.cols() - 1)
+                    continue;
+
+                step_1(j, i + 1) = step_1(k, i) * this->hidden(i, j);
             }
         }
-        step_1.col(i) += this->hidden_b.col(i);
+        step_1.col(i) += this->hidden_b.transpose().col(i);
     }
 
     Eigen::VectorXd step_2(this->output.size());
 
     for (int i = 0; i < this->output.size(); ++i)
     {
-        for (int j = 0; j < this->hidden.rows(); ++j)
+        for (int j = 0; j < this->hidden.cols(); ++j)
         {
-            step_2(i) = step_1(this->hidden.cols() - 1, j) * this->output(i);
+            step_2(i) = step_1(j, this->hidden.cols() - 1) * this->output(i);
         }
     }
 
