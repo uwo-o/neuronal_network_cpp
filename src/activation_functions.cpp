@@ -1,21 +1,21 @@
 #include "activation_functions.h"
 
-float linear(float v)
+double linear(double v)
 {
     return v;
 }
 
-float d_linear(float v)
+double d_linear(double v)
 {
     return 1;
 }
 
-float ReLu(float v)
+double ReLu(double v)
 {
     return v > 0 ? v : 0;
 }
 
-float d_ReLu(float v)
+double d_ReLu(double v)
 {
     return v > 0 ? 1 : 0;
 }

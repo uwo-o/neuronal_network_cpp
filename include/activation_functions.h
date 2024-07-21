@@ -3,13 +3,13 @@
 
 #include <cmath>
 
-float ReLu(float);
-float d_ReLu(float);
+double ReLu(double);
+double d_ReLu(double);
 
-float Sigmoid(float);
-float d_Sigmoid(float);
+double sigmoid(double);
+double d_sigmoid(double);
 
-float linear(float);
-float d_linear(float);
+double linear(double);
+double d_linear(double);
 
 #endif
