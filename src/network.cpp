@@ -94,6 +94,8 @@ void Network::train(Eigen::VectorXd value, Eigen::VectorXd expected, double lear
     for (int i = 0; i < output.size(); ++i)
     {
         double d_cost_value = this->d_cost_function(value[i], expected[i]);
+
+        // TO-DO CHANGE IT FOR VARIABLE FUNCTION
         double error = d_linear(d_cost_value) * d_cost_value;
         error *= this->output(i);
 
