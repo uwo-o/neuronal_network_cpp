@@ -1,47 +1,43 @@
 #ifndef NETWORK_H
 #define NETWORK_H
 
+#include <Eigen/Dense>
 #include <iostream>
-#include <math.h>
 #include <vector>
 
-#include "layer.h"
-class Network {
-    private:
+#include "activation_functions.h"
 
-        int input_size;
-        int layers;
-        int hlayers_size;
-        int output_size;
-        double learning_rate;
-        std::string name;
-        Layer **network;
+class Network
+{
+private:
+  int layers = 0;
 
-        double (*activation)(double);
-        double (*d_activation)(double);
+  Eigen::MatrixXd hidden;
+  Eigen::VectorXd output;
 
-    public:
-        Network(int input_size, int neurons_per_hlayer, int hlayers_size, int output_size, double learning_rate);
-        ~Network();
+  Eigen::MatrixXd hidden_b;
+  Eigen::VectorXd output_b;
 
-        void describe();
-        void fdescribe();
+  bool has_hidden;
+  double (*activation_function)(double);
+  double (*d_activation_function)(double);
 
-        Layer * get_layer(int id);
+  double cost_function(Eigen::VectorXd value, Eigen::VectorXd expected);
+  double d_cost_function(double value, double expected);
+  void train(Eigen::VectorXd value, Eigen::VectorXd expected, double learning_rate);
 
-        void set_input(std::vector<double> *input);
-
-        std::vector<double> * get_output();
-
-        void set_name(std::string name);
-        std::string get_name();
-
-        int get_layers_size();
-
-        void set_activation(double (*activation)(double));
-        double (*get_activation())(double);
-        void set_d_activation(double (*dactivation)(double));
-        double (*get_d_activation())(double);
+public:
+  Network(int hidden, int hidden_layers, int output);
+  ~Network();
+  Eigen::VectorXd forward(Eigen::VectorXd input);
+  double backpropagation(int i, double, double learning_rate, int neuron);
+  void set_activation_function(double (*activation_function)(double));
+  void set_d_activation_function(double (*activation_function)(double));
+  void start_training(std::vector<std::vector<Eigen::VectorXd>>, int, double);
+  void predict();
+  void save();
+  void load();
+  void describe();
 };
 
 #endif

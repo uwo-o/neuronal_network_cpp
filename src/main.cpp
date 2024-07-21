@@ -1,35 +1,43 @@
 #include <iostream>
-#include <math.h>
+#include <cstdlib>
+#include <time.h>
 
-#include "math/activation.h"
-#include "model.h"
-#include "io.h"
+#include "network.h"
+#include <unistd.h>
 
-int main(int argc, char * argv[]){
+using namespace std;
 
+static const int INPUT_SIZE = 1;
+static const int HIDDEN_SIZE = 0;
+static const int HIDDEN_LAYERS = 0;
+static const int OUTPUT_SIZE = 1;
+static const float LEARN_RATE = 0.001;
 
-    double input_neurons = 784;
-    double hidden_neurons = 16;
-    double hidden_layers = 1;
-    double output_neurons = 10;
-    double learning_rate = 0.1;
+int main()
+{
+    Network n = Network(HIDDEN_SIZE, HIDDEN_LAYERS, OUTPUT_SIZE);
 
-    Data * data = read_csv("/home/uwo/Projects/neuronal_network_cpp/data/MNIST/mnist_train.csv");
+    n.set_activation_function(&sigmoid);
+    n.describe();
 
-    //normalize_data_zero_to_one(data);
+    std::vector<std::vector<Eigen::VectorXd>> training_set;
 
-    data->outputs = new std::vector<std::vector<double> *>();
+    for (int i = 0; i < 30; ++i)
+    {
+        Eigen::VectorXd input(INPUT_SIZE);
+        input(0) = i * 10;
+        Eigen::VectorXd output(OUTPUT_SIZE);
+        output(0) = (1.8 * input(0)) + 32;
 
-    Model * model = new Model("MNIST", input_neurons, hidden_neurons, hidden_layers, output_neurons, learning_rate);
+        std::vector<Eigen::VectorXd>
+            train_pair = {input, output};
 
-    for(int i = 0; i < data->expected->size(); i++){
-        data->outputs->push_back(model->generate_output_by_index((int) (data->expected->at(i))));
+        training_set.push_back(train_pair);
     }
 
-    model->set_activation(relu);
-    model->set_d_activation(d_relu);
-    model->train(data, 10);
+    n.start_training(training_set, 50000, LEARN_RATE);
 
+    n.describe();
 
     return 0;
 }

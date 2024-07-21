@@ -14,16 +14,14 @@ A personal project to implement a neuronal network in C++.
 
 ---
 
-🟢  Create basic maths algorithms and classes.
-
 🟢 Create basic neuronal network.
 
-🔵 Implement backpropagation algorithm.
+🔵 Implement training process.
 
-- 🟢 Implement gradient descent algorithm.
 - 🟢 Implement feedforward algorithm.
-- 🔵 Use the backpropagation algorithm to train the network.
-- 🔵 Check issues in the algorithms and solve them.
+- ⚪️ Implement gradient descent algorithm.
+- ⚪️ Implement backpropagation algorithm.
+- ⚪️ Check issues in the algorithms and solve them.
 
 ⚪️ Paralellize with kokos Kokkos.
 
@@ -31,12 +29,13 @@ A personal project to implement a neuronal network in C++.
 
 ### Build
 
-Before to build the project, you need to install the following dependencies:
-- [CMake](https://cmake.org/)
-- [C++ Compiler](https://gcc.gnu.org/)
-- [Google Test](https://stackoverflow.com/questions/13513905/how-to-set-up-googletest-as-a-shared-library-on-linux) - Guide to install Google Test on Linux
+Before to build the project, you need to install the dependencies.
 
-Go to `build` folder, and run the following commands:
+```bash
+source install_dependencies.sh
+```
+
+Then, go to `build` folder, and run the following commands:
 
 ```bash
 cmake ..
