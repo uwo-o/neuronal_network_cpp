@@ -11,7 +11,7 @@ static const int INPUT_SIZE = 1;
 static const int HIDDEN_SIZE = 0;
 static const int HIDDEN_LAYERS = 0;
 static const int OUTPUT_SIZE = 1;
-static const float LEARN_RATE = 0.00001;
+static const float LEARN_RATE = 0.001;
 
 int main()
 {
@@ -20,21 +20,24 @@ int main()
     n.set_activation_function(&sigmoid);
     n.describe();
 
-    Eigen::VectorXd input(INPUT_SIZE);
-    input(0) = 100;
+    std::vector<std::vector<Eigen::VectorXd>> training_set;
 
-    cout << n.forward(input) << endl;
+    for (int i = 0; i < 30; ++i)
+    {
+        Eigen::VectorXd input(INPUT_SIZE);
+        input(0) = i * 10;
+        Eigen::VectorXd output(OUTPUT_SIZE);
+        output(0) = (1.8 * input(0)) + 32;
 
-    Eigen::VectorXd output(OUTPUT_SIZE);
-    output(0) = 212;
+        std::vector<Eigen::VectorXd>
+            train_pair = {input, output};
 
-    Eigen::VectorXd data_set[] = {input, output};
+        training_set.push_back(train_pair);
+    }
 
-    n.start_training(data_set, 10000, LEARN_RATE);
+    n.start_training(training_set, 50000, LEARN_RATE);
 
     n.describe();
-
-    cout << n.forward(input) << endl;
 
     return 0;
 }

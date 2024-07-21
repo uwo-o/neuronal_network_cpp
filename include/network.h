@@ -3,6 +3,7 @@
 
 #include <Eigen/Dense>
 #include <iostream>
+#include <vector>
 
 #include "activation_functions.h"
 
@@ -32,7 +33,7 @@ public:
   double backpropagation(int i, double, double learning_rate, int neuron);
   void set_activation_function(double (*activation_function)(double));
   void set_d_activation_function(double (*activation_function)(double));
-  void start_training(Eigen::VectorXd[], int, double);
+  void start_training(std::vector<std::vector<Eigen::VectorXd>>, int, double);
   void predict();
   void save();
   void load();

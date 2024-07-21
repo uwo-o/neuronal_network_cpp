@@ -110,15 +110,16 @@ void Network::train(Eigen::VectorXd value, Eigen::VectorXd expected, double lear
     }
 }
 
-void Network::start_training(Eigen::VectorXd training_set[], int times, double learning_rate)
+void Network::start_training(std::vector<std::vector<Eigen::VectorXd>> training_set, int times, double learning_rate)
 {
 
     for (int i = 0; i < times; ++i)
     {
-        for (int j = 0; j < training_set[0].size(); ++j)
+        for (int j = 0; j < training_set.size(); ++j)
         {
-            Eigen::VectorXd out = this->forward(training_set[0]);
-            this->train(out, training_set[1], learning_rate);
+            Eigen::VectorXd out = this->forward(training_set[j][0]);
+            double error = this->cost_function(out, training_set[j][1]);
+            this->train(out, training_set[j][1], learning_rate);
         }
     }
 }
