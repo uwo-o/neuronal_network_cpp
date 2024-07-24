@@ -11,10 +11,11 @@ static const int INPUT_SIZE = 1;
 static const int HIDDEN_SIZE = 2;
 static const int HIDDEN_LAYERS = 1;
 static const int OUTPUT_SIZE = 1;
-static const float LEARN_RATE = 0.001;
+static const float LEARN_RATE = 0.0001;
 
 int main()
 {
+    srand(time(0));
     Network n = Network(HIDDEN_SIZE, HIDDEN_LAYERS, OUTPUT_SIZE);
 
     n.set_activation_function(&sigmoid);
@@ -35,7 +36,7 @@ int main()
         training_set.push_back(train_pair);
     }
 
-    n.start_training(training_set, 50000, LEARN_RATE);
+    n.start_training(training_set, 100000, LEARN_RATE);
     n.describe();
 
     std::cout << training_set[10][0] << std::endl;

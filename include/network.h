@@ -25,6 +25,7 @@ private:
   double cost_function(Eigen::VectorXd value, Eigen::VectorXd expected);
   double d_cost_function(double value, double expected);
   void train(Eigen::VectorXd value, Eigen::VectorXd expected, double learning_rate);
+  double get_pond_prev(int layer);
 
 public:
   Network(int hidden, int hidden_layers, int output);
