@@ -8,8 +8,8 @@
 using namespace std;
 
 static const int INPUT_SIZE = 1;
-static const int HIDDEN_SIZE = 2;
-static const int HIDDEN_LAYERS = 1;
+static const int HIDDEN_SIZE = 0;
+static const int HIDDEN_LAYERS = 0;
 static const int OUTPUT_SIZE = 1;
 static const float LEARN_RATE = 0.0001;
 
@@ -36,7 +36,10 @@ int main()
         training_set.push_back(train_pair);
     }
 
-    n.start_training(training_set, 100000, LEARN_RATE);
+    std::cout << "Training set size: " << training_set.size() << std::endl;
+    std::cout << "Training..." << std::endl;
+
+    n.start_training(training_set, 10000, LEARN_RATE);
     n.describe();
 
     std::cout << training_set[10][0] << std::endl;

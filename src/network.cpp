@@ -15,7 +15,7 @@ double Network::d_cost_function(double value, double expected)
 
 Network::Network(int hidden_size, int hidden_layers, int output_size)
 {
-    if (hidden_size != 0 || hidden_layers != 0)
+    if (hidden_size != 0 && hidden_layers != 0)
     {
         this->hidden = Eigen::MatrixXd(hidden_size, hidden_layers);
         this->hidden.setRandom();
@@ -61,45 +61,54 @@ void Network::set_d_activation_function(double (*d_activation_function)(double))
     this->d_activation_function = d_activation_function;
 }
 
-double Network::backpropagation(int layer, double error, double learning_rate, int neuron)
+void Network::backpropagation(int layer, double error, double learning_rate)
 {
-    if (!has_hidden)
-        return this->output(neuron);
 
     if (layer < 0)
-        return this->hidden.col(0)(neuron);
-
-    double a_pond_prev = 0;
+        return;
 
     for (int i = 0; i < this->hidden.rows(); ++i)
     {
-        error *= this->hidden(i, layer);
-        a_pond_prev += backpropagation(layer - 1, error, learning_rate, i);
-        this->hidden(i, layer) -= error * a_pond_prev * learning_rate;
-        this->hidden_b(i, layer) -= error * learning_rate;
+        double a = this->hidden(i, layer);
+        this->hidden(i, layer) -= error * a * learning_rate;
     }
 
-    return a_pond_prev;
+    for (int i = this->hidden.cols() - 2; i >= 0; --i)
+    {
+        for (int j = 0; j < this->hidden.rows(); ++j)
+        {
+            double a = this->hidden(j, i);
+            this->hidden(j, i) -= this->hidden(j, i + 1) * a * learning_rate;
+        }
+    }
 }
 
 void Network::train(Eigen::VectorXd value, Eigen::VectorXd expected, double learning_rate)
 {
+
+    double pond_error = 0;
+
     for (int i = 0; i < output.size(); ++i)
     {
         double d_cost_value = this->d_cost_function(value[i], expected[i]);
         // TO-DO CHANGE IT FOR VARIABLE FUNCTION
         double error = d_linear(d_cost_value) * d_cost_value;
-        error *= this->output(i);
+        pond_error += error;
 
-        int hidden_cols = 0;
+        double a = this->output[i];
 
-        if (has_hidden)
-            hidden_cols = this->hidden.cols();
-
-        double a = backpropagation(hidden_cols - 1, error, learning_rate, i);
         this->output[i] -= error * a * learning_rate;
         this->output_b[i] -= error * learning_rate;
     }
+
+    pond_error /= this->output.size();
+
+    int hidden_cols = 0;
+
+    if (has_hidden)
+        hidden_cols = this->hidden.cols();
+
+    backpropagation(hidden_cols - 1, pond_error, learning_rate);
 }
 
 void Network::start_training(std::vector<std::vector<Eigen::VectorXd>> training_set, int times, double learning_rate)

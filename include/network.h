@@ -31,7 +31,7 @@ public:
   Network(int hidden, int hidden_layers, int output);
   ~Network();
   Eigen::VectorXd forward(Eigen::VectorXd input);
-  double backpropagation(int i, double, double learning_rate, int neuron);
+  void backpropagation(int i, double output_error, double learning_rate);
   void set_activation_function(double (*activation_function)(double));
   void set_d_activation_function(double (*activation_function)(double));
   void start_training(std::vector<std::vector<Eigen::VectorXd>>, int, double);
