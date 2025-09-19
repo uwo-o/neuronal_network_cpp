@@ -1,61 +1,36 @@
 
 # Neuronal network in C++
 
-A personal project to implement a neuronal network in C++.
+## Requirements
+- C++11 or higher
+- CMake 3.10 or higher
+- Eigen 3.3 or higher
 
-## Index
-
-- [TO-DO List](#to-do-list)
-- [How to build](#build)
-
-### TO-DO List
-
-| 🟢 : Ready | 🔵 : In progress | ⚪️ : To-do
-
----
-
-🟢 Create basic neuronal network.
-
-🔵 Implement training process.
-
-- 🟢 Implement feedforward algorithm.
-- ⚪️ Implement gradient descent algorithm.
-- ⚪️ Implement backpropagation algorithm.
-- ⚪️ Check issues in the algorithms and solve them.
-
-⚪️ Paralellize with kokos Kokkos.
-
-⚪️ Paralellize with CUDA.
-
-### Build
-
-Before to build the project, you need to install the dependencies.
-
+If there is not installed Cmake you can install it using the following commands:
+Linux (Ubuntu/Debian)
 ```bash
-source install_dependencies.sh
+sudo apt update
+sudo apt install cmake
+```
+MacOS (using Homebrew)
+```bash
+brew install cmake
 ```
 
-Then, go to `build` folder, and run the following commands:
-
+## Build Instructions
+1. Go to build directory
+```bash
+cd build
+```
+2. Run CMake to configure the project
 ```bash
 cmake ..
+```
+3. Compile the project
+```bash
 make
 ```
-
-Then at the same folder you will find the executable file `nnc`.
-
-## Contributors
-<a href="https://github.com/uwo-o/Neuronal-Network-C/graphs/contributors">
-<img src="https://contrib.rocks/image?repo=uwo-o/Neuronal-Network-C" />
-</a>
-
----
-Based and inspired by [Neuronal Networks - 3Blue1Brown](https://www.youtube.com/watch?v=aircAruvnKk&list=PLZHQObOWTQDNU6R1_67000Dx_ZCJB-3pi&ab_channel=3Blue1Brown)
-
-### References
-#### Data
-- [MNIST](https://git-disl.github.io/GTDLBench/datasets/mnist_datasets/)
-
-#### Backpropagation algorithm
-- [Backpropagation](https://en.wikipedia.org/wiki/Backpropagation)
-- [Understanding Backpropagation Algorithm](https://towardsdatascience.com/understanding-backpropagation-algorithm-7bb3aa2f95fd)
+4. Execute the program
+```bash
+./nnc
+```

@@ -1,16 +1,13 @@
-enable_testing()
 cmake_minimum_required(VERSION 3.10)
 project(nnc)
 set(CMAKE_CXX_STANDARD 14)
 
-find_package (Eigen3 3.3 REQUIRED NO_MODULE)
-
-enable_testing()
-
 include_directories(include)
-include_directories(ext)
 
-file(GLOB 
+add_library(eigen INTERFACE)
+target_include_directories(eigen INTERFACE ${CMAKE_SOURCE_DIR}/ext/eigen-3.4.0)
+
+file(GLOB
     src_folder
     "src/*.cpp"
     "src/**/*.cpp"
@@ -18,4 +15,4 @@ file(GLOB
 )
 
 add_executable(nnc ${src_folder})
-target_link_libraries(nnc Eigen3::Eigen)
+target_link_libraries(nnc eigen)
