@@ -4,5 +4,3 @@
 /.ccls-cache
 build/*
 !build/.gitkeep
-data/*
-!data/.gitkeep

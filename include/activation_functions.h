@@ -12,4 +12,7 @@ double d_sigmoid(double);
 double linear(double);
 double d_linear(double);
 
+double softmax(double);
+double d_softmax(double);
+
 #endif

@@ -29,3 +29,13 @@ double d_sigmoid(double v)
 {
     return sigmoid(v) * (1 - sigmoid(v));
 }
+
+double softmax(double v)
+{
+    return exp(v);
+}
+
+double d_softmax(double v)
+{
+    return softmax(v) * (1 - softmax(v));
+}

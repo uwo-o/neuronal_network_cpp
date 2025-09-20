@@ -3,48 +3,37 @@
 #include <time.h>
 
 #include "network.h"
+#include "data_loader.h"
 #include <unistd.h>
 
 using namespace std;
 
-static const int INPUT_SIZE = 1;
-static const int HIDDEN_SIZE = 0;
-static const int HIDDEN_LAYERS = 0;
-static const int OUTPUT_SIZE = 1;
-static const float LEARN_RATE = 0.0001;
-
 int main()
 {
     srand(time(0));
-    Network n = Network(HIDDEN_SIZE, HIDDEN_LAYERS, OUTPUT_SIZE);
+    DataLoader data_loader;
 
-    n.set_activation_function(&sigmoid);
-    n.describe();
+    Eigen::MatrixXd train_data = DataLoader::loadCSV("../data/mnist_train_small.csv", false, ',');
+    Eigen::MatrixXd test_data = DataLoader::loadCSV("../data/mnist_test.csv", false, ',');
 
-    std::vector<std::vector<Eigen::VectorXd>> training_set;
+    cout << "Train data shape: (" << train_data.rows() << ", " << train_data.cols() << ")" << endl;
+    cout << "Test data shape: (" << test_data.rows() << ", " << test_data.cols() << ")" << endl;
 
-    for (int i = 0; i < 30; ++i)
-    {
-        Eigen::VectorXd input(INPUT_SIZE);
-        input(0) = i * 10;
-        Eigen::VectorXd output(OUTPUT_SIZE);
-        output(0) = (1.8 * input(0)) + 32;
+    Eigen::MatrixXd X = train_data.rightCols(train_data.cols() - 1);
+    Eigen::MatrixXd y = train_data.leftCols(1);
 
-        std::vector<Eigen::VectorXd>
-            train_pair = {input, output};
+    Eigen::MatrixXd X_test = test_data.rightCols(test_data.cols() - 1);
+    Eigen::MatrixXd y_test = test_data.leftCols(1);
 
-        training_set.push_back(train_pair);
-    }
+    Eigen::MatrixXd X_train, X_val, y_train, y_val;
+    data_loader.splitData(X, y, X_train, X_val, y_train, y_val, 0.8);
 
-    std::cout << "Training set size: " << training_set.size() << std::endl;
-    std::cout << "Training..." << std::endl;
-
-    n.start_training(training_set, 10000, LEARN_RATE);
-    n.describe();
-
-    std::cout << training_set[10][0] << std::endl;
-    std::cout << training_set[10][1] << std::endl;
-    std::cout << n.forward(training_set[10][0]) << std::endl;
+    std::cout << "X_train shape: (" << X_train.rows() << ", " << X_train.cols() << ")" << std::endl;
+    std::cout << "y_train shape: (" << y_train.rows() << ", " << y_train.cols() << ")" << std::endl;
+    std::cout << "X_val shape: (" << X_val.rows() << ", " << X_val.cols() << ")" << std::endl;
+    std::cout << "y_val shape: (" << y_val.rows() << ", " << y_val.cols() << ")" << std::endl;
+    std::cout << "X_test shape: (" << X_test.rows() << ", " << X_test.cols() << ")" << std::endl;
+    std::cout << "y_test shape: (" << y_test.rows() << ", " << y_test.cols() << ")" << std::endl;
 
     return 0;
 }
