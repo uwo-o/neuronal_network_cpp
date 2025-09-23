@@ -4,16 +4,18 @@
 #include <Eigen/Dense>
 #include <iostream>
 #include <vector>
+#include <memory>
 
 #include "activation_functions.h"
-
+#include "layers.h"
 class Network
 {
 private:
-  std::vector<Eigen::MatrixXd> layers;
+  std::vector<std::unique_ptr<Layer>> layers;
+  float learning_rate;
 
 public:
-  Network(std::vector<Eigen::MatrixXd> layers, float learning_rate = 0.01);
+  Network(std::vector<std::unique_ptr<Layer>> layers, float learning_rate = 0.01);
   ~Network();
   Eigen::MatrixXd forward(const Eigen::MatrixXd &input);
   void backward(const Eigen::MatrixXd &predicted, const Eigen::MatrixXd &actual);
