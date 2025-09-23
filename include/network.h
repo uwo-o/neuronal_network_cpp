@@ -10,35 +10,15 @@
 class Network
 {
 private:
-  int layers = 0;
-
-  Eigen::MatrixXd hidden;
-  Eigen::VectorXd output;
-
-  Eigen::MatrixXd hidden_b;
-  Eigen::VectorXd output_b;
-
-  bool has_hidden;
-  double (*activation_function)(double);
-  double (*d_activation_function)(double);
-
-  double cost_function(Eigen::VectorXd value, Eigen::VectorXd expected);
-  double d_cost_function(double value, double expected);
-  void train(Eigen::VectorXd value, Eigen::VectorXd expected, double learning_rate);
-  double get_pond_prev(int layer);
+  std::vector<Eigen::MatrixXd> layers;
 
 public:
-  Network(int hidden, int hidden_layers, int output);
+  Network(std::vector<Eigen::MatrixXd> layers, float learning_rate = 0.01);
   ~Network();
-  Eigen::VectorXd forward(Eigen::VectorXd input);
-  void backpropagation(int i, double output_error, double learning_rate);
-  void set_activation_function(double (*activation_function)(double));
-  void set_d_activation_function(double (*activation_function)(double));
-  void start_training(std::vector<std::vector<Eigen::VectorXd>>, int, double);
-  void predict();
-  void save();
-  void load();
-  void describe();
+  Eigen::MatrixXd forward(const Eigen::MatrixXd &input);
+  void backward(const Eigen::MatrixXd &predicted, const Eigen::MatrixXd &actual);
+  void train(const Eigen::MatrixXd &X_train, const Eigen::MatrixXd &y_train, int epochs);
+  float evaluate(const Eigen::MatrixXd &X_val, const Eigen::MatrixXd &y_val);
 };
 
 #endif

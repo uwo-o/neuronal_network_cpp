@@ -1,41 +1,52 @@
 #include "activation_functions.h"
 
-double linear(double v)
+using Eigen::MatrixXd;
+
+MatrixXd linear(const MatrixXd &v)
 {
     return v;
 }
 
-double d_linear(double v)
+MatrixXd d_linear(const MatrixXd &v)
 {
-    return 1;
+    return MatrixXd::Ones(v.rows(), v.cols());
 }
 
-double ReLu(double v)
+MatrixXd ReLu(const MatrixXd &v)
 {
-    return v > 0 ? v : 0;
+    return v.cwiseMax(0.0);
 }
 
-double d_ReLu(double v)
+MatrixXd d_ReLu(const MatrixXd &v)
 {
-    return v > 0 ? 1 : 0;
+    return (v.array() > 0).cast<double>();
 }
 
-double sigmoid(double v)
+MatrixXd sigmoid(const MatrixXd &v)
 {
-    return 1 / (1 - exp(-v));
+    return 1.0 / (1.0 + (-v.array()).exp());
 }
 
-double d_sigmoid(double v)
+MatrixXd d_sigmoid(const MatrixXd &v)
 {
-    return sigmoid(v) * (1 - sigmoid(v));
+    MatrixXd s = sigmoid(v);
+    return s.array() * (1.0 - s.array());
 }
 
-double softmax(double v)
+MatrixXd softmax(const MatrixXd &v)
 {
-    return exp(v);
+    MatrixXd result = v;
+    for (int i = 0; i < v.rows(); ++i)
+    {
+        double maxCoeff = v.row(i).maxCoeff();
+        Eigen::ArrayXd exps = (v.row(i).array() - maxCoeff).exp();
+        result.row(i) = exps / exps.sum();
+    }
+    return result;
 }
 
-double d_softmax(double v)
+MatrixXd d_softmax(const MatrixXd &v)
 {
-    return softmax(v) * (1 - softmax(v));
+    MatrixXd s = softmax(v);
+    return s.array() * (1.0 - s.array());
 }

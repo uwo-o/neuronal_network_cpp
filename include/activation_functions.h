@@ -2,17 +2,18 @@
 #define ACTIVATION_FUNCTIONS_H
 
 #include <cmath>
+#include <Eigen/Dense>
 
-double ReLu(double);
-double d_ReLu(double);
+Eigen::MatrixXd ReLu(const Eigen::MatrixXd &);
+Eigen::MatrixXd d_ReLu(const Eigen::MatrixXd &);
 
-double sigmoid(double);
-double d_sigmoid(double);
+Eigen::MatrixXd sigmoid(const Eigen::MatrixXd &);
+Eigen::MatrixXd d_sigmoid(const Eigen::MatrixXd &);
 
-double linear(double);
-double d_linear(double);
+Eigen::MatrixXd linear(const Eigen::MatrixXd &);
+Eigen::MatrixXd d_linear(const Eigen::MatrixXd &);
 
-double softmax(double);
-double d_softmax(double);
+Eigen::MatrixXd softmax(const Eigen::MatrixXd &);
+Eigen::MatrixXd d_softmax(const Eigen::MatrixXd &);
 
 #endif
