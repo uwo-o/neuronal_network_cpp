@@ -36,15 +36,21 @@ int main()
     std::cout << "y_test shape: (" << y_test.rows() << ", " << y_test.cols() << ")" << std::endl;
 
     std::vector<std::unique_ptr<Layer>> layers;
-    layers.push_back(std::make_unique<Linear>(X_train.cols(), 128));
+    layers.push_back(std::make_unique<Linear>(X_train.cols(), 256));
+    layers.push_back(std::make_unique<ReLU>(256));
+    layers.push_back(std::make_unique<Linear>(256, 128));
     layers.push_back(std::make_unique<ReLU>(128));
-    layers.push_back(std::make_unique<Linear>(128, 10));
+    layers.push_back(std::make_unique<Linear>(128, 64));
+    layers.push_back(std::make_unique<ReLU>(64));
+    layers.push_back(std::make_unique<Linear>(64, 32));
+    layers.push_back(std::make_unique<ReLU>(32));
+    layers.push_back(std::make_unique<Linear>(32, 10));
+    layers.push_back(std::make_unique<Softmax>(10));
 
     Network network(std::move(layers));
-    network.train(X_train, y_train, 10);
-
-    float accuracy = network.evaluate(X_test, y_test);
-    std::cout << "Test accuracy: " << accuracy << std::endl;
+    // network.train(X_train, y_train, 10);
+    // float accuracy = network.evaluate(X_test, y_test);
+    // std::cout << "Test accuracy: " << accuracy << std::endl;
 
     return 0;
 }

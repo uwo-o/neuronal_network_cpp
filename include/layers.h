@@ -37,4 +37,12 @@ public:
     Eigen::MatrixXd backward(const Eigen::MatrixXd &gradOutput, double learningRate) override;
 };
 
+class Softmax : public Layer
+{
+public:
+    Softmax(int inputSize);
+    Eigen::MatrixXd forward(const Eigen::MatrixXd &input) override;
+    Eigen::MatrixXd backward(const Eigen::MatrixXd &gradOutput, double learningRate) override;
+};
+
 #endif
